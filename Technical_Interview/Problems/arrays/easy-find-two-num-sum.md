@@ -11,8 +11,6 @@ would be 5 and 6, which sum to 11
 - Are there duplicates? 
 - What to return if there is more than one answer? 
 
-# Solution
-
 ```javascript 
 function findSub(arr, t) {
   if (!arr || arr.length <= 1) return [-1, -1]
