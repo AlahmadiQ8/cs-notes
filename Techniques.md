@@ -8,8 +8,11 @@
 - [Binary Search](#binary-search)
   - [Record & Move](#record--move)
   - [Special Tricks](#special-tricks)
-- [Permutations/Combinations](#permutationscombinations)
-  - [Auxiliary Buffer](#auxiliary-buffer)
+- [Recursion](#recursion)
+  - [Permutations/Combinations (Auxiliary Buffer)](#permutationscombinations-auxiliary-buffer)
+  - [Backtracking](#backtracking)
+- [Linked Lists](#linked-lists)
+  - [Slow Pointer and Fast pointer](#slow-pointer-and-fast-pointer)
 
 # Arrays
 
@@ -57,11 +60,26 @@
 - Search Unknown Array Size 
 
 
-# Permutations/Combinations
+# Recursion
 
-## Auxiliary Buffer
+## Permutations/Combinations (Auxiliary Buffer)
 
 1. Termination Cases
 2. Find Candidates that go into the buffer index
 3. Place each candidate into the buffer index
 4. Recurse to next buffer index
+
+## Backtracking
+
+- Solving mazes
+- Finding paths 
+- [Soduko Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
+- [Placing N queens on a Chess Board](https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/)
+
+
+# Linked Lists
+
+- Sort Linked List
+  - Trick is to determine the range of values
+
+## Slow Pointer and Fast pointer 
