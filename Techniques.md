@@ -14,6 +14,10 @@
 - [Linked Lists](#linked-lists)
   - [Slow Pointer and Fast pointer](#slow-pointer-and-fast-pointer)
   - [Linked Hash Table](#linked-hash-table)
+- [Stacks](#stacks)
+  - [Expression Evaluation](#expression-evaluation)
+- [Queue](#queue)
+- [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
 
@@ -99,3 +103,19 @@
 - Usages: 
   - LRU Caching: Least Recently Used Cache 
   - Given a doc, find smallest subarray containing all given words
+
+# Stacks
+
+## Expression Evaluation 
+
+- Postfix Expression: Use an operands stack
+- Infix Expression: Use an operands stack and operator stack
+- Infix with Parenthesis
+
+# Queue
+
+- Basic implementation: Circular Array
+- Useful often in sliding windows
+- Review implementing Queue with Max since it can be handy
+
+# Dynamic Programming (NOT REVIEWED YET)
