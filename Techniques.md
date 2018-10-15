@@ -5,6 +5,8 @@
   - [Kadane's algorithm](#kadanes-algorithm)
   - [Sliding​​ Window](#sliding-window)
   - [Cumulative Sum](#cumulative-sum)
+  - [Maximum Diff](#maximum-diff)
+  - [2D Arrays](#2d-arrays)
 - [Binary Search](#binary-search)
   - [Record & Move](#record--move)
   - [Special Tricks](#special-tricks)
@@ -52,6 +54,18 @@
   1. Create array with sums till i
   2. Create map and check if there are duplicated sums in the array
   3. return [prev + 1, i]
+
+## Maximum Diff
+
+- Similar to Kadane's algorithm
+
+## 2D Arrays
+
+- [Review Here](https://interviewcamp.io/courses/101687/lectures/2632010)
+- Rotate Array
+- Print Array ZigZag
+- Print Array in Spiral Order
+- 
 
 # Binary Search
 

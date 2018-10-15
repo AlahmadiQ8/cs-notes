@@ -1,5 +1,9 @@
+## Problem
+
+```
 Given an array of integers and an integer k, you need to find the total
 number of continuous subarrays whose sum equals to k.
+```
 
 ## Notes
 
@@ -15,7 +19,6 @@ function xSumSubarray(arr, x) {
   let sum = arr[0]
   let i = 0,
     j = 0
-  let iter = 10
   while (i < arr.length) {
     if (i > j) {
       j = i
