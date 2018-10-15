@@ -13,6 +13,7 @@
   - [Backtracking](#backtracking)
 - [Linked Lists](#linked-lists)
   - [Slow Pointer and Fast pointer](#slow-pointer-and-fast-pointer)
+  - [Linked Hash Table](#linked-hash-table)
 
 # Arrays
 
@@ -83,3 +84,18 @@
   - Trick is to determine the range of values
 
 ## Slow Pointer and Fast pointer 
+
+- Find if list has a cycle in it
+- Go to the middle node
+- Find the 3rd to last element in a given linked list.
+
+## Linked Hash Table
+
+- Linked Lists provide O(n) lookup time, but preserve order 
+- Hash tables provide O(1) lookup time but no order preserve
+- Combining the two gives us the following: 
+  - Preserved order
+  - O(1) Lookup time
+- Usages: 
+  - LRU Caching: Least Recently Used Cache 
+  - Given a doc, find smallest subarray containing all given words

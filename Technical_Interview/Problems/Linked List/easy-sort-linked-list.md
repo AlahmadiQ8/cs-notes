@@ -4,7 +4,7 @@
 You are given a Linked List with nodes that have values 0, 1 or 2. Sort 
 the linked list.
 
-Similar Problen, rearrange, linked list by odd numbers first then even 
+Similar Problem, rearrange, linked list by odd numbers first then even 
 ones
 ```
 
