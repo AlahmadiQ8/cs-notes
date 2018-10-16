@@ -7,6 +7,7 @@
   - [Cumulative Sum](#cumulative-sum)
   - [Maximum Diff](#maximum-diff)
   - [2D Arrays](#2d-arrays)
+  - [Special Tricks](#special-tricks)
 - [Binary Search](#binary-search)
   - [Record & Move](#record--move)
   - [Special Tricks](#special-tricks)
@@ -19,6 +20,10 @@
 - [Stacks](#stacks)
   - [Expression Evaluation](#expression-evaluation)
 - [Queue](#queue)
+- [Hash Tables](#hash-tables)
+  - [Rabin Karp Algorithm](#rabin-karp-algorithm)
+- [Graphs](#graphs)
+  - [Depth First Search (DFS)](#depth-first-search-dfs)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -65,7 +70,12 @@
 - Rotate Array
 - Print Array ZigZag
 - Print Array in Spiral Order
-- 
+  
+## Special Tricks
+
+- Reverse words in array 
+- Check if string is rotation of another
+- Longest palindrome in string 
 
 # Binary Search
 
@@ -131,5 +141,37 @@
 - Basic implementation: Circular Array
 - Useful often in sliding windows
 - Review implementing Queue with Max since it can be handy
+
+# Hash Tables
+
+- Load Factor = n / length of hash array (slots)
+- Good Load Factor <= 0.75
+- Characteristics of good hash function 
+  - Deterministic
+  - Evenly distributed 
+  - Uses all input values
+- Good hash function: Polynomial 
+  - `hash("boat") -> 'b'.x^3 + 'o'.x^2 + 'a'.x + 't'`
+  - Implementation: [visit this link](https://interviewcamp.io/courses/101687/lectures/3312774)
+
+## Rabin Karp Algorithm
+
+- Find is string is substring of another 
+- Implement `contains(a, b)` to check if a contains b
+- String search 
+- Super Simple: Sliding window!
+- Use polynomial hash function where you can add and delete letter
+  to move the window.
+- See [example problem](https://interviewcamp.io/courses/101687/lectures/3312773)
+
+# Graphs
+
+- Directed vs undirected
+- A clique is when each node has an edge to every other node in the 
+  graph.
+
+## Depth First Search (DFS)
+
+- Steps
 
 # Dynamic Programming (NOT REVIEWED YET)
