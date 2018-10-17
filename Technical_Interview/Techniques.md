@@ -25,6 +25,8 @@
 - [Graphs](#graphs)
   - [Depth First Search (DFS)](#depth-first-search-dfs)
   - [Breadth First Search (DFS)](#breadth-first-search-dfs)
+  - [Topological Sort](#topological-sort)
+- [Line Sweep](#line-sweep)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -32,31 +34,31 @@
 ## Benefits
 
 - O(1) lookup time
-- Fixed size 
+- Fixed size
 - Resizing is an expensive operation
 
 ## Two pointers
 
 - Reverse Array
 - Find two numbers that sum to an X in sorted array
-  
+
 ## Dutch National Flag
 
 - Quick Sort
-- Sort by three colors 
+- Sort by three colors
 - Move all zeros to end of array
 
-## Kadane's algorithm 
+## Kadane's algorithm
 
-- Maximum subarray 
+- Maximum subarray
 
-## Sliding​​ Window 
+## Sliding​​ Window
 
 - Subarray that sums to X in an array of **positive integers**
 
 ## Cumulative Sum
 
-- Find subarray that sums to zero 
+- Find subarray that sums to zero
   1. Create array with sums till i
   2. Create map and check if there are duplicated sums in the array
   3. return [prev + 1, i]
@@ -71,12 +73,12 @@
 - Rotate Array
 - Print Array ZigZag
 - Print Array in Spiral Order
-  
+
 ## Special Tricks
 
-- Reverse words in array 
+- Reverse words in array
 - Check if string is rotation of another
-- Longest palindrome in string 
+- Longest palindrome in string
 
 # Binary Search
 
@@ -84,10 +86,10 @@
 
 - Find Closest element to target
 
-## Special Tricks 
+## Special Tricks
 
 - Search in a rotated array
-- Search Unknown Array Size 
+- Search Unknown Array Size
 
 
 # Recursion
@@ -102,7 +104,7 @@
 ## Backtracking
 
 - Solving mazes
-- Finding paths 
+- Finding paths
 - [Soduko Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
 - [Placing N queens on a Chess Board](https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/)
 
@@ -112,7 +114,7 @@
 - Sort Linked List
   - Trick is to determine the range of values
 
-## Slow Pointer and Fast pointer 
+## Slow Pointer and Fast pointer
 
 - Find if list has a cycle in it
 - Go to the middle node
@@ -120,18 +122,18 @@
 
 ## Linked Hash Table
 
-- Linked Lists provide O(n) lookup time, but preserve order 
+- Linked Lists provide O(n) lookup time, but preserve order
 - Hash tables provide O(1) lookup time but no order preserve
-- Combining the two gives us the following: 
+- Combining the two gives us the following:
   - Preserved order
   - O(1) Lookup time
-- Usages: 
-  - LRU Caching: Least Recently Used Cache 
+- Usages:
+  - LRU Caching: Least Recently Used Cache
   - Given a doc, find smallest subarray containing all given words
 
 # Stacks
 
-## Expression Evaluation 
+## Expression Evaluation
 
 - Postfix Expression: Use an operands stack
 - Infix Expression: Use an operands stack and operator stack
@@ -147,19 +149,19 @@
 
 - Load Factor = n / length of hash array (slots)
 - Good Load Factor <= 0.75
-- Characteristics of good hash function 
+- Characteristics of good hash function
   - Deterministic
-  - Evenly distributed 
+  - Evenly distributed
   - Uses all input values
-- Good hash function: Polynomial 
+- Good hash function: Polynomial
   - `hash("boat") -> 'b'.x^3 + 'o'.x^2 + 'a'.x + 't'`
   - Implementation: [visit this link](https://interviewcamp.io/courses/101687/lectures/3312774)
 
 ## Rabin Karp Algorithm
 
-- Find is string is substring of another 
+- Find is string is substring of another
 - Implement `contains(a, b)` to check if a contains b
-- String search 
+- String search
 - Super Simple: Sliding window!
 - Use polynomial hash function where you can add and delete letter
   to move the window.
@@ -168,7 +170,7 @@
 # Graphs
 
 - Directed vs undirected
-- A clique is when each node has an edge to every other node in the 
+- A clique is when each node has an edge to every other node in the
   graph.
 
 ## Depth First Search (DFS)
@@ -189,7 +191,23 @@
 
 ## Topological Sort
 
-- Topological sorting arranges the nodes in order such that all edges 
+- Topological sorting arranges the nodes in order such that all edges
   are pointing forward.
+- Implemented using Depth First Search (DFS)
+- Only possible when there are no cycles
+- Examples:
+  - Find Longest Path
+  - Find Minimum number of classes to take given prerequisites
+
+# Line Sweep
+
+- Given a list of time intervals, find if any of them overlap.
+  Each interval has a start time and a stop time
+- Given a list of time intervals, find the largest number of overlaps at any point
+- Steps
+  1. Extract start and end times into individual points
+  `Point { isStart, time }`
+  2. sort them in order
+  3. iterate and keep track 
 
 # Dynamic Programming (NOT REVIEWED YET)
