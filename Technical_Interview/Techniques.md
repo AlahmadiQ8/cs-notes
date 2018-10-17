@@ -24,6 +24,7 @@
   - [Rabin Karp Algorithm](#rabin-karp-algorithm)
 - [Graphs](#graphs)
   - [Depth First Search (DFS)](#depth-first-search-dfs)
+  - [Breadth First Search (DFS)](#breadth-first-search-dfs)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -172,6 +173,23 @@
 
 ## Depth First Search (DFS)
 
+- Steps:
+  1. Mark "VISITING"
+  2. Process
+  3. Visit each unvisited neighbor
+  4. Mark "VISITED"
+
+## Breadth First Search (DFS)
+
 - Steps
+  1. Initialize `queue = [node]` and mark the node as visiting
+  2. while queue is not empty, unshift, process, push unvisited nodes
+     to the queue and mark them as visiting
+  3. mark the current node as visited
+
+## Topological Sort
+
+- Topological sorting arranges the nodes in order such that all edges 
+  are pointing forward.
 
 # Dynamic Programming (NOT REVIEWED YET)

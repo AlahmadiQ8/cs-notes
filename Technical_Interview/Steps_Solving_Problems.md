@@ -1,9 +1,16 @@
 # Steps To Follow When Answering A Coding Problem 
 
+## Misc
+
+- Do not jump straight to code
+- Ask the interviewer to agree on a solution to code
+- Take careful care of syntax (YES it matters)
+
 ## 1. Example
 
 - A basic example
 - Make sure you clearly understand the problem & requirements
+- Ask a lot of questions
   
 ## 2. Solutions 
 
@@ -27,6 +34,7 @@
 - Confirm function signature and return types
 - Handle invalid input
 - Use helper functions
+- Communicate and state your assumptions early 
 
 ## 5. Verify 
 
