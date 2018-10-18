@@ -5,6 +5,9 @@
 - Do not jump straight to code
 - Ask the interviewer to agree on a solution to code
 - Take careful care of syntax (YES it matters)
+- Heap: 
+  - Insert/remove O(logn)
+  - Max O(1) 
 
 ## 1. Example
 

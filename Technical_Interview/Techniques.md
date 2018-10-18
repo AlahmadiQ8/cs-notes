@@ -27,6 +27,8 @@
   - [Breadth First Search (DFS)](#breadth-first-search-dfs)
   - [Topological Sort](#topological-sort)
 - [Line Sweep](#line-sweep)
+- [Selection Algorithm](#selection-algorithm)
+  - [Heaps](#heaps)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -91,7 +93,6 @@
 - Search in a rotated array
 - Search Unknown Array Size
 
-
 # Recursion
 
 ## Permutations/Combinations (Auxiliary Buffer)
@@ -107,7 +108,6 @@
 - Finding paths
 - [Soduko Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
 - [Placing N queens on a Chess Board](https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/)
-
 
 # Linked Lists
 
@@ -204,10 +204,29 @@
 - Given a list of time intervals, find if any of them overlap.
   Each interval has a start time and a stop time
 - Given a list of time intervals, find the largest number of overlaps at any point
+- [Skyline Problem](https://interviewcamp.io/courses/101687/lectures/3312866)
 - Steps
   1. Extract start and end times into individual points
-  `Point { isStart, time }`
+     `Point { isStart, time }`
   2. sort them in order
-  3. iterate and keep track 
+  3. iterate and keep track
+
+# Selection Algorithm
+
+- Uses QuickSort's partitioning step
+- Used to find Kth smallest Element (or elements)
+- It finds the K smallest elements in an unsorted array in O(n) time.
+- O(n) Time on Average/ O(N^2) Worst time
+- _Medians of Medians_ Algorithm gaurunties O(n) time worst case. but a bit complicated for interviews
+
+## Heaps
+
+- you can use it to find Kth Smallest in nlon(k) time. Although
+  Selection algorithm performs better on average.
+
+|                |       |
+| -------------- | ----- |
+| Lookup for min | nlogk |
+| insert/remove  | logn  |
 
 # Dynamic Programming (NOT REVIEWED YET)
