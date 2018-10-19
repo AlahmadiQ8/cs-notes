@@ -29,8 +29,8 @@ function longestPalindrome(str) {
       longest = palindromeAtI
     }
     const palindromeAfterI = getPalindrome(str, i, true)
-    if (palindromeAtI.length > longest.length) {
-      longest = palindromeAtI
+    if (palindromeAfterI.length > longest.length) {
+      longest = palindromeAfterI
     }
   }
 
@@ -38,7 +38,7 @@ function longestPalindrome(str) {
 }
 
 function getPalindrome(str, i, isMiddle) {
-  if (i == 0) return str[0]
+  if (i == 0 && !isMiddle) return str[0]
   if (i == str.length - 1) return str[str.length - 1]
 
   let ans = isMiddle ? "" : str[i]
@@ -50,9 +50,8 @@ function getPalindrome(str, i, isMiddle) {
     left--
     right++
   }
-  
   return ans
 }
 
-longestPalindrome('abbababaab') // babab
+longestPalindrome('cbbd') //?
 ```

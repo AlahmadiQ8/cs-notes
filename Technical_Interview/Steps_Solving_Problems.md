@@ -14,6 +14,8 @@
 - A basic example
 - Make sure you clearly understand the problem & requirements
 - Ask a lot of questions
+- High level discussion
+- Explain Concepts
   
 ## 2. Solutions 
 
@@ -31,6 +33,13 @@
   - Visited unvisited to solve this
   - Could use a hash to keep track of visited/unvisited
   - Recursion is often good
+- Start with function definition with test cases to follow 
+```
+// case1
+// case2 
+// case3 
+function foo(args)
+```
 
 ## 4. Code
 

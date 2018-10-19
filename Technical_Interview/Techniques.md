@@ -246,11 +246,20 @@
 - Time Complexity: O(nlogn) Average, O(n^2) worst time
 - Space Complexity: O(1)
 
+## Tricks 
+
+- If you have shortlimited range (0-9) utilize bucket sort for O(n) time 
+  complexity  
+
 ## Array Stability
 
 - Duplicated elements retain their order? Merge sort gaurauntees it. 
   but not quick sort.
 - How to make sorting algorthim stable? use object elements with unique 
   indexes and add the index to the comparator
+
+## Soritng Large Data 
+
+- See https://interviewcamp.io/courses/101687/lectures/2652608
 
 # Dynamic Programming (NOT REVIEWED YET)

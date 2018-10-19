@@ -26,7 +26,7 @@ function closestElement(arr, target) {
 function record(arr, mid, result, target) {
   if (result == null) return mid
   const diff = Math.abs(arr[mid] - target)
-  return diff < result ? mid : result
+  return diff < Math.abs(arr[result] - target) ? mid : result
 }
 
 closestElement([1, 2, 4, 5, 7, 8, 9], 2.5) // 1
