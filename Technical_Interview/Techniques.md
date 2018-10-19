@@ -28,7 +28,11 @@
   - [Topological Sort](#topological-sort)
 - [Line Sweep](#line-sweep)
 - [Selection Algorithm](#selection-algorithm)
-  - [Heaps](#heaps)
+- [Heaps](#heaps)
+- [Sorting](#sorting)
+  - [Merge Sort](#merge-sort)
+  - [Quick Sort](#quick-sort)
+  - [Array Stability](#array-stability)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -218,8 +222,9 @@
 - It finds the K smallest elements in an unsorted array in O(n) time.
 - O(n) Time on Average/ O(N^2) Worst time
 - _Medians of Medians_ Algorithm gaurunties O(n) time worst case. but a bit complicated for interviews
+- **How to find Median in O(n) Time complexity?** Find the (n/2)th element
 
-## Heaps
+# Heaps
 
 - you can use it to find Kth Smallest in nlon(k) time. Although
   Selection algorithm performs better on average.
@@ -228,5 +233,24 @@
 | -------------- | ----- |
 | Lookup for min | nlogk |
 | insert/remove  | logn  |
+
+# Sorting
+
+## Merge Sort
+
+- Time Complexity: O(nlogn) worst time
+- Space Complexity: O(n)
+
+## Quick Sort
+
+- Time Complexity: O(nlogn) Average, O(n^2) worst time
+- Space Complexity: O(1)
+
+## Array Stability
+
+- Duplicated elements retain their order? Merge sort gaurauntees it. 
+  but not quick sort.
+- How to make sorting algorthim stable? use object elements with unique 
+  indexes and add the index to the comparator
 
 # Dynamic Programming (NOT REVIEWED YET)
