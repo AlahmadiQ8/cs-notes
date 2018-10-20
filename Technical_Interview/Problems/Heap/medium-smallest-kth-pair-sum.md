@@ -28,6 +28,10 @@ Explanation: All possible pairs are returned from the sequence: [1,3],[2,3]
 
 ## Solution 
 
+- [Source](https://leetcode.com/explore/interview/card/google/63/sorting-and-searching-4/447/discuss/84551/simple-Java-O(KlogK)-solution-with-explanation)
+
+![](Technical_Interview/Problems/Heap/medium-smallest-kth-pair-sum.png)
+
 ```javascript
 function kSmallestPairs(nums1, nums2, k) {
   // min queue, sorted by pair sum
