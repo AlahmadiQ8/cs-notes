@@ -26,13 +26,18 @@
   - [Depth First Search (DFS)](#depth-first-search-dfs)
   - [Breadth First Search (DFS)](#breadth-first-search-dfs)
   - [Topological Sort](#topological-sort)
+  - [Bipartite Graph](#bipartite-graph)
 - [Line Sweep](#line-sweep)
 - [Selection Algorithm](#selection-algorithm)
 - [Heaps](#heaps)
 - [Sorting](#sorting)
   - [Merge Sort](#merge-sort)
   - [Quick Sort](#quick-sort)
+  - [Tricks](#tricks)
   - [Array Stability](#array-stability)
+  - [Soritng Large Data](#soritng-large-data)
+- [Bit Manipulation](#bit-manipulation)
+  - [Count number of ones](#count-number-of-ones)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -179,6 +184,7 @@
 
 ## Depth First Search (DFS)
 
+- Used to detect cycles
 - Steps:
   1. Mark "VISITING"
   2. Process
@@ -202,6 +208,16 @@
 - Examples:
   - Find Longest Path
   - Find Minimum number of classes to take given prerequisites
+
+## Bipartite Graph 
+
+- Graph where nodes can be separated into two groups where each
+  node in a group cannot be connected to another node in the same
+  group. 
+- Solved using BFS and simplified version of Dikstra
+- even distances go in one group and odd distances go to another
+- if two nodes have the same distance and directly connected, then 
+  this is NOT a bipartite graph.
 
 # Line Sweep
 
@@ -261,5 +277,60 @@
 ## Soritng Large Data 
 
 - See https://interviewcamp.io/courses/101687/lectures/2652608
+
+# Bit Manipulation
+
+|                            |                                     |
+| -------------------------  | ----------------------------------- |
+| Set Value to 1             | `1<<n | number`                     |
+| Set Value to 0             | `~(1<<n) & number`                  |
+| Toggle Value               | `1<<n ^ number `                    |
+| Get Bit                    | `(num,i) => ((num & (1 « i)) != 0)` or `(n>>i) & 1` |
+| Get Same Value             | `x | 0 = x` or `x ^ 0 = x`          |
+| Clear Bits in range i & j  | `~ ( 1<<(j+1) - 1) << i )`          |
+| checks if n is a power of 2| `n & (n-1) == 0` |
+|  |                           `// 00100 ==> true` |
+|  |                           `// 10110 ==> false` |
+
+## LSB (Least Significant Bit)
+
+- **Memorize:** X & (X - 1) gives us X without the Least Significant Bit (LSB).
+```
+0101 => 0100 
+0100 => 0000 
+1111 => 1110 
+1000 => 0000
+```
+
+## Most Significant 1 bit index in a number
+
+- i = log2(n)
+
+## Count number of ones
+
+```javascript
+function countOnes(n) {
+  let count = 0
+  while (n > 0) {
+    n = n & (n - 1)
+    count++
+  }
+  return count
+}
+```
+
+## Swap Bits 
+
+```javascript
+function swapBits(n, i, j) {
+  if (getBit(n, i) !== getBit(n, j)) {
+    return n ^ ((1 << i) | (1 << j))
+  }
+}
+
+function getBit(n, j) {
+  return n >> j & 1
+}
+```
 
 # Dynamic Programming (NOT REVIEWED YET)
