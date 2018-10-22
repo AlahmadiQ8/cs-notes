@@ -1,5 +1,12 @@
 # Steps To Follow When Answering A Coding Problem 
 
+```
+1. Define the Problem
+2. Ask Questions to limit the scope to make it easier
+3. ask on error possible inputs
+4. 
+```
+
 ## Misc
 
 - Do not jump straight to code
@@ -22,6 +29,15 @@
 - Ask a lot of questions
 - High level discussion
 - Explain Concepts
+---
+- How big is the size of the input?
+- How big is the range of values?
+- What kind of values are there? Are there negative numbers? Floating points?
+  Will there be empty inputs?
+- Are there duplicates within the input?
+- What are some extreme cases of the input?
+- How is the input stored? If you are given a dictionary of words, is it a list
+  of strings or a trie?
   
 ## 3. Test Cases 
 
