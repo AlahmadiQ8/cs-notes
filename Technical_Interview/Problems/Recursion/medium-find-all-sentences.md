@@ -43,7 +43,7 @@ function findSentence(str, dict, sentence, i) {
     return
   }
 
-  const words = findAllWords(str, dict, i)
+  const words = findAllWordsFromIndex(str, dict, i)
 
   for (const word of words) {
     sentence.push(word.str)
@@ -52,7 +52,7 @@ function findSentence(str, dict, sentence, i) {
   }
 }
 
-function findAllWords(str, dict, i) {
+function findAllWordsFromIndex(str, dict, i) {
   const words = []
   let j = i
   for (let j = i; j < str.length; j++) {

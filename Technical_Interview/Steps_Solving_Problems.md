@@ -9,6 +9,12 @@
   - Insert/remove O(logn)
   - Max O(1) 
 
+## PreReq
+
+- Ask damn questions
+- **Try to limit the scope of the question such that you can implement it on time**
+- Clarify assumption
+
 ## 1. Example
 
 - A basic example
@@ -17,13 +23,6 @@
 - High level discussion
 - Explain Concepts
   
-## 2. Solutions 
-
-- Start with a brute force solution
-- Discuss solutions
-- Trade offs / cons and pros 
-- Time, space complexity
-
 ## 3. Test Cases 
 
 - Edge cases
@@ -40,6 +39,13 @@
 // case3 
 function foo(args)
 ```
+
+## 2. Solutions 
+
+- Start with a brute force solution
+- Discuss solutions
+- Trade offs / cons and pros 
+- Time, space complexity
 
 ## 4. Code
 

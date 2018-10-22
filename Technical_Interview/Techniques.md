@@ -37,7 +37,15 @@
   - [Array Stability](#array-stability)
   - [Soritng Large Data](#soritng-large-data)
 - [Bit Manipulation](#bit-manipulation)
+  - [LSB (Least Significant Bit)](#lsb-least-significant-bit)
+  - [Most Significant 1 bit index in a number](#most-significant-1-bit-index-in-a-number)
   - [Count number of ones](#count-number-of-ones)
+  - [Swap Bits](#swap-bits)
+- [Binary Trees](#binary-trees)
+  - [Lowest Common Ancestor (LCA)](#lowest-common-ancestor-lca)
+- [Tries](#tries)
+- [Union Find (Disjoint Set Union)](#union-find-disjoint-set-union)
+  - [Applications](#applications)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
 # Arrays
@@ -332,5 +340,30 @@ function getBit(n, j) {
   return n >> j & 1
 }
 ```
+
+# Binary Trees
+
+## Lowest Common Ancestor (LCA)
+
+- if you have access to parent, calc hieghts of both, make 
+  them from equal height from root, then travese up together
+  untill they're the same 
+
+# Tries 
+
+- Check https://www.filepicker.io/api/file/KmFrMpJJQzyGeq1IfCd0
+  
+# Union Find (Disjoint Set Union)
+
+- [Best Article](https://leetcode.com/articles/redundant-connection/)
+- [Awesome Slide](https://www.cs.princeton.edu/~rs/AlgsDS07/01UnionFind.pdf)
+- See [numbers of islands](https://leetcode.com/problems/number-of-islands/solution/)
+- 
+
+## Applications
+
+- Node Connectivity
+- number of disconnected set of nodes
+
 
 # Dynamic Programming (NOT REVIEWED YET)
