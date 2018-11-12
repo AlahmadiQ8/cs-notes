@@ -13,7 +13,7 @@ function zeroSumSubarray(arr) {
   for (let i = 0; i < arr.length; i++) {
     cSum[i] = i == 0 ? arr[i] : cSum[i - 1] + arr[i]
     if (cSum[i] == 0) {
-      return [0, j]
+      return [0, i]
     }
   }
 
