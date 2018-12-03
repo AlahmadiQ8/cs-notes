@@ -7,6 +7,13 @@
   - [Throttle Implementation](#throttle-implementation)
   - [Flatten Array](#flatten-array)
   - [Asynch, Await](#asynch-await)
+  - [Event Delegation](#event-delegation)
+  - [Explain how prototypal inheritance works?](#explain-how-prototypal-inheritance-works)
+  - [What do you think of AMD vs CommonJS?](#what-do-you-think-of-amd-vs-commonjs)
+  - [What is the difference between `undefined` and `null`?](#what-is-the-difference-between-undefined-and-null)
+  - [Closures](#closures)
+- [Frameworks](#frameworks)
+- [Problems with Jquery?](#problems-with-jquery)
 
 ## How to use `call`, `bind`, and `apply` 
 
@@ -85,7 +92,7 @@ for ( var i=1; i<=5; i++) {
   }, i*1000, i);
 }
 
-// ;et var
+// let var
 for (let i = 1; i <= 5; i++) {
   setTimeout(function timer() {
     console.log(i)
@@ -182,6 +189,63 @@ async function test() {
 test()
 ```
 
-
 You can think of async as wrapping a function using `Promise.resolve()`.
 
+## Event Delegation
+
+Event delegation is a technique involving adding event listeners to a parent
+element instead of adding them to the descendant elements. The listener will
+fire whenever the event is triggered on the descendant elements due to event
+bubbling up the DOM. The benefits of this technique are:
+
+- Memory footprint goes down because only one single handler is needed on the
+  parent element, rather than having to attach event handlers on each
+  descendant.
+- There is no need to unbind the handler from elements that are removed and to
+  bind the event for new elements.
+
+*References*
+
+- https://davidwalsh.name/event-delegate
+- https://stackoverflow.com/questions/1687296/what-is-dom-event-delegation
+
+## Explain how prototypal inheritance works? 
+
+- https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md
+
+## What do you think of AMD vs CommonJS?
+
+- **AMD (Asynchronous Module Definition):** used for browsers. verbose syntax.
+- **CommonJS:** used for nodejs.
+
+## What is the difference between `undefined` and `null`?
+
+- `undefined`: 
+  - when a variable is declared and undefined, it is assigned `undefined`
+  - when a function doesn't return anything, it returns undefined by default
+- `null`: 
+  - will have to be explicitly assigned to a variable. 
+  - represents no value
+
+```javascript
+let a = null
+let b = undefined
+a == b   // true
+a === b  // false
+typeof a // "object"
+typeof b // "undefined"
+```
+
+## Closures
+
+
+
+# Frameworks
+
+# Problems with Jquery?
+
+- You can easily write code that has deeply coupled data logic and view.
+- Can has unnecessary re-renders compared to other frameworks that leverage
+  virtual dom such as react and vue
+- It is just a library and best practices and patterns are left for users. this
+  is not good for large teams 

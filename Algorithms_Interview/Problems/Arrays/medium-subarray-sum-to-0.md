@@ -28,4 +28,20 @@ function zeroSumSubarray(arr) {
 
   return null
 }
+
+function zeroSumSubarray(arr) {
+  if (!arr || arr.length === 0) return null
+
+  let sum = 0
+  const map = new Map()
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i]
+    if (sum === 0) return [0, i]
+    if (map.has(sum)) return [map.get(sum) + 1, i]
+    map.set(sum, i)
+  }
+  return null
+}
+
+expect(zeroSumSubarray([2, 4, -2, 1, -3, 5, -3])).to.deep.equal([1, 4])
 ```
