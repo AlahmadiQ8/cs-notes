@@ -2,9 +2,12 @@
 
 Any Distributed system is a tradofe of three aspects: 
 
-- **Consistency:** Every Read gets the most up to date value
-- **Availability:** The system gives a (none-error) response
-- **Partition Tolrence:** The System continues to operate in spite of network
+- **Consistency:** All nodes see the same data at the same time. Consistency is 
+  achieved by updating several nodes before allowing further reads.
+- **Availability:** Every request gets a response on success/failure. 
+  Availability is achieved by replicating the data across different servers.
+- **Partition Tolrence:** he system continues to work despite message loss or 
+  partial failure
   partition(s)
 
 # ACID

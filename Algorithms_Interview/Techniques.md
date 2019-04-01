@@ -177,6 +177,8 @@
 
 - Load Factor = n / length of hash array (slots)
 - Good Load Factor <= 0.75
+- To decrease the load factor, resize the size of the hash (larger array slots)
+- Resizing Takes Time O(keys)
 - Characteristics of good hash function
   - Deterministic
   - Evenly distributed

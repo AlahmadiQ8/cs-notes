@@ -32,6 +32,11 @@
 4. **H**: **High Level** Design
 5. **D**: **Detailed** Design
 
+Additional steps: 
+
+- 2.3 - Draw a state machine
+- 3.5 - Keep Scalibility in mind
+
 # Uber/Lyft System Design
 
 # Features
