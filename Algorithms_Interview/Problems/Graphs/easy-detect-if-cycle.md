@@ -42,8 +42,6 @@ function hasCycle(graph) {
 }
 
 function detectCycle(node) {
-  if (!node) return false
-
   node.state = 'visiting'
 
   for (const nei of node.neighbors) {

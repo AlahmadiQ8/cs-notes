@@ -54,22 +54,30 @@ const open = {
   '[': ']',
 }
 
-function isValid(str) {
-  if (str.length == 0) return true
-  if (str.length % 2 != 0) return false
-  const stack = [open[str[0]]]
-  for (let i = 1; i < str.length; i++) {
-    const top = stack[stack.length - 1]
-    if (str[i] == top) {
-      stack.pop()
-    } else if (open[str[i]] != null) {
-      stack.push(open[str[i]])
-    } else  {
-      return false
-    }
-  }
-  return stack.length == 0
+const obj = {
+  '{': '}',
+  '[': ']',
+  '(': ')'
 }
+
+function isValid(code) {
+  const stack = []
+  const openers = new Set(['(', '[', '{']);
+  const closers = new Set([')', ']', '}']);
+
+  for (const bracket of code) {
+    if (openers.has(bracket)) {
+      stack.push(obj[bracket])
+    } else if (closers.has(bracket)) {
+      if (!stack.length) return false
+      const lastUnclosedOpener = stack.pop()
+      if (lastUnclosedOpener !== bracket) return false
+    } 
+  }
+
+  return stack.length === 0
+}
+
 
 isValid('()[]{}') //?
 isValid('((()))') //?
