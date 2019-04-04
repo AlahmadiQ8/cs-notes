@@ -30,17 +30,17 @@ function maxDiffTwoTrades(arr) {
   let maxDiff = 0
   for (let i = 0; i < arr.length; i++) {
     minSoFar = Math.min(arr[i], minSoFar)
-    const maxi = arr[i] - minSoFar
-    bestTilli[i] = Math.max(maxDiff, maxi)
+    maxDiff = Math.max(maxDiff, arr[i] - minSoFar)
+    bestTilli[i] = maxDiff
   }
 
   const bestFromi = []
-  let maxSoFar = Number.NEGATIVE_INFINITY
+  let maxSoFar = Number.NEGATIVE_INFINITYw
   maxDiff = 0
   for (let i = arr.length - 1; i >= 0; i--) {
     maxSoFar = Math.max(arr[i], maxSoFar)
-    const maxi = maxSoFar - arr[i]
-    bestFromi[i] = Math.max(maxDiff, maxi)
+    maxDiff = Math.max(maxDiff, maxSoFar - arr[i])
+    bestFromi[i] = maxDiff
   }
 
   let answer = 0
