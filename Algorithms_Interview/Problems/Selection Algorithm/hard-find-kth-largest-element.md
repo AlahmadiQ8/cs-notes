@@ -1,20 +1,23 @@
 ## Problem
 
-```
+https://leetcode.com/explore/interview/card/amazon/79/sorting-and-searching/482/
+
+
 Find the kth largest element in an unsorted array. Note that it is the kth
 largest element in the sorted order, not the kth distinct element.
 
-Example 1:
+Examples:
 
+```
 Input: [3,2,1,5,6,4] and k = 2
 Output: 5
-Example 2:
 
 Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4
-
-Note: You may assume k is always valid, 1 ≤ k ≤ array's length.
 ```
+
+**Note:** You may assume k is always valid, 1 ≤ k ≤ array's length.
+
 
 # Technique
 
@@ -26,39 +29,38 @@ Note: You may assume k is always valid, 1 ≤ k ≤ array's length.
 | Space      | O(n)                        |
 
 ```javascript
-function findKthElement(arr, k) {
-  if (!arr || arr.length == 0) return null
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+function findKthLargest(nums, k) {
+  
+  return helper(nums, 0, nums.length - 1, nums.length - k);
+};
 
-  // to get kth smallest element, set it to k - 1 
-  return selectionSort(arr, arr.length - k, 0, arr.length - 1)
-}
-
-function selectionSort(arr, targetIndex, start, end) {
+function helper(arr, start, end, targetIndex) {
   if (end < start) return null
 
   const pivot = getRandomInt(start, end)
-  const result = singlePlacementPartition(arr, pivot, start, end)
-  if (targetIndex == result) {
-    return arr[result]
-  } else if (targetIndex < result) {
-    return selectionSort(arr, targetIndex, start, result - 1)
-  } else {
-    return selectionSort(arr, targetIndex, result + 1, end)
-  }
+  const result = selectionAlgorithm(arr, start, end, pivot)
+
+  if (result === targetIndex) return arr[result]
+  if (result < targetIndex) return helper(arr, result + 1, end, targetIndex)
+  return helper(arr, start, result - 1, targetIndex)
 }
 
-function singlePlacementPartition(arr, pivot, start, end) {
+function selectionAlgorithm(arr, start, end, pivot) {
   swap(arr, start, pivot)
   let less = start
   for (let i = start + 1; i <= end; i++) {
-    if (arr[i] <= arr[start]) {
-      swap(arr, i, ++less)
-    }
+    if (arr[i] <= arr[start]) 
+      swap(arr, ++less, i)
   }
   swap(arr, start, less)
-  less
   return less
 }
+
 
 function getRandomInt(start, end) {
   return Math.floor(Math.random() * (end - start + 1)) + start
@@ -72,14 +74,13 @@ function swap(arr, i, j) {
 }
 
 const arr = () => [5, 6, 4, 7, 3, 8, 2, 9, 1]
-findKthElement(arr(), 1) // 1
-findKthElement(arr(), 2) // 2
-findKthElement(arr(), 3) // 3
-findKthElement(arr(), 4) // 4
-findKthElement(arr(), 5) // 5
-findKthElement(arr(), 6) // 6
-findKthElement(arr(), 7) // 7
-findKthElement(arr(), 8) // 8
-findKthElement(arr(), 9) // 9
-
+expect(findKthLargest(arr(), 1)).to.eq(9) 
+expect(findKthLargest(arr(), 2)).to.eq(8) 
+expect(findKthLargest(arr(), 3)).to.eq(7) 
+expect(findKthLargest(arr(), 4)).to.eq(6) 
+expect(findKthLargest(arr(), 5)).to.eq(5) 
+expect(findKthLargest(arr(), 6)).to.eq(4) 
+expect(findKthLargest(arr(), 7)).to.eq(3) 
+expect(findKthLargest(arr(), 8)).to.eq(2) 
+expect(findKthLargest(arr(), 9)).to.eq(1) 
 ```

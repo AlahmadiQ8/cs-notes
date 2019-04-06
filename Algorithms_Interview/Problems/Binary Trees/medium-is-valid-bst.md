@@ -30,6 +30,7 @@ function isBst(node: Node<number>): MinMaxPair {
   const left = isBst(node.left)
   const right = isBst(node.right)
 
+  if (!left || !right) return null
   if (left.max > node.value || right.min < node.value) {
     return null
   }

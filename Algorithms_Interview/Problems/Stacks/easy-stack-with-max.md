@@ -6,7 +6,60 @@ Implement​ ​a​ ​Stack​ ​with​ ​a​ ​max()​ ​function.​ 
 ​maximum​ ​number​ ​on​ ​the​ ​stack. 
 ```
 
-## Solution
+## Solution (Min)
+
+```javascript
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minStack = [];
+  }
+
+  /**
+   * @param {number} x
+   * @return {void}
+   */
+  push(x) {
+    this.stack.push(x);
+    if (
+      this.minStack.length === 0 ||
+      this.minStack[this.minStack.length - 1] >= x
+    ) {
+      this.minStack.push(x);
+    }
+  }
+
+  /**
+   * @return {number}
+   */
+  pop() {
+    if (this.stack.length === 0) return null;
+    const el = this.stack.pop();
+    if (el == this.minStack[this.minStack.length - 1]) {
+      this.minStack.pop();
+    }
+    return el;
+  }
+
+  /**
+   * @return {number}
+   */
+  top() {
+    if (this.stack.length === 0) return null;
+    return this.stack[this.stack.length - 1];
+  }
+
+  /**
+   * @return {number}
+   */
+  getMin() {
+    if (this.stack.length === 0) return null;
+    return this.minStack[this.minStack.length - 1];
+  }
+}
+```
+
+## Solution (Max)
 
 ```java
 public class StackWithMaxImpl {

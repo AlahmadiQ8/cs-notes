@@ -1,7 +1,7 @@
 ## Problem
 
 ```
-Implement​​a​​data​​structure​​for​​a​​Least​​Recently​​Used​​(LRU)​​cache
+Implement​​ a​​ data​​ structure​ ​for​ ​a​ ​Least​​ Recently​​ Used​​(LRU)​​ cache
 ```
 
 ## Technique
@@ -23,14 +23,14 @@ class LRUCache {
     if (!node) {
       return null
     }
-    this.remove(key)  // remove​​from​​linked​​hash​​table
+    this.remove(key)  // remove​​ from​​ linked​​ hash​​ table
     this.add(node.key, node.value) //add back to the front
 
     return node.value
   }
   write(key, value) {
     if (this.map.size === capacity) {
-      this.remove(this.head.key)  // cache​​is​​full,​​evict​​the​​head)
+      this.remove(this.head.key)  // cache​​ is​​ full,​​ evict​​ the ​​head)
     }
     this.add(key, value)
   }

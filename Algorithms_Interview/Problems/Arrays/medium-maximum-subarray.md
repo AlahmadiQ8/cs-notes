@@ -22,13 +22,16 @@ at least one number) which has the largest sum and return its sum.
 | Space      | O(1)  |
 
 ```javascript 
-function maxSubArray(arr) {
-  if (!arr || arr.length === 0) return null
-  if (arr.length === 1) return arr[0]
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+function maxSubArray(nums) {
+  if (!nums || nums.length === 0) return null
 
-  let maxSum = arr[0], maxEndingHere = arr[0]
-  for (let i = 1; i < arr.length; i++) {
-    maxEndingHere = Math.max(arr[i], maxEndingHere + arr[i])
+  let maxSum = nums[0], maxEndingHere = nums[0]
+  for (let i = 1; i < nums.length; i++) {
+    maxEndingHere = Math.max(nums[i], maxEndingHere + nums[i])
     maxSum = Math.max(maxSum, maxEndingHere)
   }
   return maxSum
