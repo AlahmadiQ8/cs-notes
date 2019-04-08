@@ -28,21 +28,21 @@ Explanation: The subarray [-1, 2] sums to 1 and is the longest.
 
 ```javascript
 function maxSubArrayLen(arr, k) {
-  if (!arr || arr.length == 0) return 0
-  let max = 0
-  const map = {0: 0}
-  let sum = 0
+  if (!arr || arr.length == 0) return 0;
+  let max = 0;
+  const map = new Map();
+  let sum = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    sum += arr[i]
-    if (sum == k) max = max = Math.max(i + 1, max)
-    if (map[sum - k] != null) {
-      const index = map[sum - k]
-      max = Math.max(i - index, max)
+    sum += arr[i];
+    if (sum == k) max = max = Math.max(i + 1, max);
+    if (map.has(sum - k)) {
+      const index = map.get(sum - k);
+      max = Math.max(i - index, max);
     }
-    if (map[sum] == null) map[sum] = i
+    if (!map.has(sum)) map.set(sum, i);
   }
 
-  return max
+  return max;
 }
 ```

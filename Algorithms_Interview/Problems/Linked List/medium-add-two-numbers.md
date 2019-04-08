@@ -37,8 +37,8 @@ function addTwoNumbers(l1, l2) {
     value = value % 10
     cur.next = new ListNode(value)
     cur = cur.next
-    curL1 = curL1 && curL1.next
-    curL2 = curL2 && curL2.next 
+    curL1 = curL1.next
+    curL2 = curL2.next 
   }
   if (curry) {
     cur.next = new ListNode(curry)

@@ -4,7 +4,7 @@
 1. Define the Problem
 2. Ask Questions to limit the scope to make it easier
 3. ask on error possible inputs
-4. 
+4. to save time, you can add TODO for error handling
 ```
 
 ## Misc

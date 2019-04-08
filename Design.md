@@ -1,3 +1,9 @@
+# Tips
+
+- Do not Prematurely optimize
+- 
+
+
 # First Step: List out specifications, features and use cases
 
 - You need to come up with a high level design

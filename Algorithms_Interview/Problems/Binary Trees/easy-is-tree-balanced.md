@@ -9,7 +9,7 @@ Given​ ​a​ ​binary​ ​tree,​ ​determine​ ​if​ ​it​ ​i
 ```javascript
 function isBalanced(node) {
   if (!node) return true
-  return isBalancedHelper(node)
+  return isBalancedHelper(node) > -1
 }
 
 function isBalancedHelper(node) {
@@ -18,7 +18,7 @@ function isBalancedHelper(node) {
   const leftHeight = isBalancedHelper(node.left)
   const rightHeight = isBalancedHelper(node.right)
 
-  if (leftHeight == -1 || rightHeight == -1) return false
+  if (leftHeight == -1 || rightHeight == -1) return -1
 
   if (Math.abs(rightHeight - leftHeight) > 1) return -1
 

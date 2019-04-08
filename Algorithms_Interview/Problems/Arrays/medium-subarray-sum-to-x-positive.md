@@ -14,6 +14,7 @@ number of continuous subarrays whose sum equals to k.
 - Sliding window
 
 ```javascript
+// WRONG
 function subarraySum(arr, k) {
   if (!arr || arr.length == 0) return 0
   let count = 0
