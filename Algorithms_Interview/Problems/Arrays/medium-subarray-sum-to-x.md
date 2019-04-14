@@ -35,7 +35,7 @@ function maxSubArrayLen(arr, k) {
 
   for (let i = 0; i < arr.length; i++) {
     sum += arr[i];
-    if (sum == k) max = max = Math.max(i + 1, max);
+    if (sum == k) max = Math.max(i + 1, max);
     if (map.has(sum - k)) {
       const index = map.get(sum - k);
       max = Math.max(i - index, max);
