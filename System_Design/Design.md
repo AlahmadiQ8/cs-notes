@@ -37,7 +37,7 @@
   communicate with each other
 - Better way: Distrubuted cache, distributed storage, distributed web server
 
-![](./Cloud-Environment.png)
+![](/assets/Cloud-Environment.png)
 
 # Approaching System Design Interviews
 
@@ -96,4 +96,4 @@ Additional steps:
 
 **Assumptions**: Backend Design for millions of users 
 
-![](./Uber_High_Level_Design_1_.png)
+![](/assets/Uber_High_Level_Design_1_.png)
