@@ -61,3 +61,44 @@ function shortestUnsortedSubarray(arr) {
 
 expect(shortestUnsortedSubarray([0, 1, 5, 4, 2, 3, 6, 7])).to.deep.equal([2, 5])
 ```
+
+
+```csharp
+public Result ShortestUnsortedSubarray(int[] arr) {
+    if (arr == null || arr.Length <= 1) return null;
+
+    var dip = 0;
+    while (dip + 1 < arr.Length && arr[dip] < arr[dip + 1]) dip++;
+    
+    var bump = arr.Length - 1;
+    while (bump - 1 >= 0 && arr[bump] > arr[bump - 1]) bump--;
+
+    if (dip == arr.Length - 1 || bump == 0) return null;
+
+    var min = int.MaxValue; 
+    for (var i = dip; i <= bump; i++) 
+        if (arr[i] < min) min = arr[i];
+    
+    var max = int.MinValue; 
+    for (var i = dip; i <= bump; i++) 
+        if (arr[i] > max) max = arr[i];
+    
+    var start = dip;
+    var end = bump;
+
+    while (start - 1 >= 0 && arr[start - 1] > min) start--;
+    while (end + 1 < arr.Length - 1 && arr[end + 1] < max) end++;
+
+    return new Result { Start = start, End = end };
+}
+
+public class Result {
+    public int Start { get; set; }
+    public int End { get; set; }
+}
+
+public void Test()
+{
+    ShortestUnsortedSubarray(new[] {0, 1, 5, 4, 2, 3, 6, 7}).Should().BeEquivalentTo(new Result {Start = 2, End = 5});
+}
+```

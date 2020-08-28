@@ -1,3 +1,12 @@
+- [Steps To Follow When Answering A Coding Problem](#steps-to-follow-when-answering-a-coding-problem)
+  - [Misc](#misc)
+  - [PreReq](#prereq)
+  - [1. Example](#1-example)
+  - [2. Solutions](#2-solutions)
+  - [3. Test Cases](#3-test-cases)
+  - [4. Code](#4-code)
+  - [5. Verify](#5-verify)
+
 # Steps To Follow When Answering A Coding Problem 
 
 ```
@@ -29,7 +38,8 @@
 - Ask a lot of questions
 - High level discussion
 - Explain Concepts
----
+
+Demo:
 - How big is the size of the input?
 - How big is the range of values?
 - What kind of values are there? Are there negative numbers? Floating points?
@@ -39,6 +49,13 @@
 - How is the input stored? If you are given a dictionary of words, is it a list
   of strings or a trie?
   
+## 2. Solutions 
+
+- Start with a brute force solution
+- Discuss solutions
+- Trade offs / cons and pros 
+- Time, space complexity
+
 ## 3. Test Cases 
 
 - Edge cases
@@ -55,13 +72,6 @@
 // case3 
 function foo(args)
 ```
-
-## 2. Solutions 
-
-- Start with a brute force solution
-- Discuss solutions
-- Trade offs / cons and pros 
-- Time, space complexity
 
 ## 4. Code
 

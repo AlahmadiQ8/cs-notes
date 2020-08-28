@@ -45,3 +45,25 @@ const arr = [3, 5, 2, 6, 8, 4, 4, 6, 4, 4, 3]
 dnf(arr, 3) // [ 3, 5, 2, 3, 4, 4, 4, 4, 6, 6, 8 ]​​​​​
 ```
 
+```csharp
+public void DutchFlag(int[] arr, int pivot) {
+    if (arr == null || arr.Length == 0) return; 
+
+    var left = 0;
+    var right = arr.Length - 1; 
+    var mid = 0;
+
+    while (mid <= right) {
+        if (arr[mid] < pivot) Swap(arr, left++, mid++);
+        else if (arr[mid] > pivot) Swap(arr, right--, mid);
+        else mid++;
+    }
+}
+
+public override void Test()
+{
+    var input = new[] {3, 5, 2, 6, 8, 4, 4, 6, 4, 4, 3};
+    DutchFlag(input, 6);
+    input.Should().Equal(3, 5, 2, 3, 4, 4, 4, 4, 6, 6, 8);
+}
+```

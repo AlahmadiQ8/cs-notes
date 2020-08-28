@@ -85,3 +85,20 @@ function findMaxCrossing(arr, low, mid, high) {
 }
 maxSubArray([-2, -3, 3, -1, -2, 1, 5, -1]) //?
  ```
+
+
+```csharp
+public int MaxSubArray(int[] nums) {
+    if (nums == null || nums.Length == 0) return 0;
+
+    var maxSum = nums[0];
+    var result = nums[0];
+
+    for (var i = 1; i < nums.Length; i++) {
+        maxSum = Math.Max(nums[i], nums[i] + maxSum);
+        result = Math.Max(result, maxSum);
+    }
+
+    return result; 
+}
+```

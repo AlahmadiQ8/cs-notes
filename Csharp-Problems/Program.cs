@@ -6,7 +6,10 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
+            
+            AbstractSolution example = new Solution();
+            example.Test();
         }
     }
 }

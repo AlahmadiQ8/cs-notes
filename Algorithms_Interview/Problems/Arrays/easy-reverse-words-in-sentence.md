@@ -56,3 +56,40 @@ reverseWords(str)
 const res = str.join('')
 res // test and foo
 ```
+
+```csharp
+public void ReverseWords(char[] words)
+{
+    Array.Reverse(words);
+    for (var i = 0; i < words.Length; i++)
+    {
+        if (words[i] == ' ') continue;
+
+        var j = GetEndOfWord(words, i);
+        while (i < j)
+            Swap(words, i++, j--);
+        i = j + 1;
+    }
+}
+
+private int GetEndOfWord(IList<char> wordsList, int i)
+{
+    var j = i;
+    while (j + 1 < wordsList.Count && wordsList[j + 1] != ' ') j++;
+    return j;
+}
+
+void Swap(IList<char> arr, int i, int j)
+{
+    var buf = arr[i];
+    arr[i] = arr[j];
+    arr[j] = buf;
+}
+
+public void Test()
+{
+    var input = "one two  three".ToCharArray();
+    ReverseWords(input);
+    Console.WriteLine(input.ToConcatenated());
+}
+```

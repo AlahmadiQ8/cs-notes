@@ -1,19 +1,8 @@
-- [Arrays](#arrays)
 
-  - [Benefits](#benefits)
-  - [Two pointers](#two-pointers)
-  - [Dutch National Flag](#dutch-national-flag)
-  - [Kadane's algorithm](#kadanes-algorithm)
-  - [Sliding​​ Window](#sliding-window)
-  - [Cumulative Sum](#cumulative-sum)
-  - [Maximum Diff](#maximum-diff)
-  - [2D Arrays](#2d-arrays)
-  - [Special Tricks](#special-tricks)
+
 - [Arrays](#arrays)
   - [Benefits](#benefits)
-  - [Two pointers](#two-pointers)
-  - [Dutch National Flag](#dutch-national-flag)
-  - [Kadane's algorithm](#kadanes-algorithm)
+  - [Techniques](#techniques)
   - [Sliding​​ Window](#sliding-window)
   - [Cumulative Sum](#cumulative-sum)
   - [Maximum Diff](#maximum-diff)
@@ -21,7 +10,7 @@
   - [Special Tricks](#special-tricks)
 - [Binary Search](#binary-search)
   - [Record & Move](#record--move)
-  - [Special Tricks](#special-tricks)
+  - [Special Tricks](#special-tricks-1)
 - [Recursion](#recursion)
   - [Permutations/Combinations (Auxiliary Buffer)](#permutationscombinations-auxiliary-buffer)
   - [Backtracking](#backtracking)
@@ -67,20 +56,21 @@
 - Fixed size
 - Resizing is an expensive operation
 
-## Two pointers
+## Techniques
 
-- Reverse Array
-- Find two numbers that sum to an X in sorted array
+* **Two pointers**
+  - Reverse Array
+  - Find two numbers that sum to an X in sorted array
+  - Given a sorted array in non-decreasing order, return an array of squares of each number, alsoin non-decreasing order
+  - Find the shortest subarray, that if sorted, results in the entire array being sorted
 
-## Dutch National Flag
+* **Dutch National Flag**
+  - Quick Sort
+  - Sort by three colors
+  - Move all zeros to end of array
 
-- Quick Sort
-- Sort by three colors
-- Move all zeros to end of array
-
-## Kadane's algorithm
-
-- Maximum subarray
+* **Kadane's algorithm**
+- Maximum subarray sum
 
 ## Sliding​​ Window
 
