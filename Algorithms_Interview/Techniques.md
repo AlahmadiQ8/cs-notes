@@ -1,4 +1,6 @@
 
+<details><summary>Table of Contents</summary>
+<p>
 
 - [Arrays](#arrays)
   - [Benefits](#benefits)
@@ -48,6 +50,9 @@
   - [Applications](#applications)
 - [Dynamic Programming (NOT REVIEWED YET)](#dynamic-programming-not-reviewed-yet)
 
+</p>
+</details>
+
 # Arrays
 
 ## Benefits
@@ -63,12 +68,10 @@
   - Find two numbers that sum to an X in sorted array
   - Given a sorted array in non-decreasing order, return an array of squares of each number, alsoin non-decreasing order
   - Find the shortest subarray, that if sorted, results in the entire array being sorted
-
 * **Dutch National Flag**
   - Quick Sort
   - Sort by three colors
   - Move all zeros to end of array
-
 * **Kadane's algorithm**
 - Maximum subarray sum
 
