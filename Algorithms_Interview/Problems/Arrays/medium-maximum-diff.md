@@ -29,3 +29,25 @@ function maxDiff(arr) {
 
 expect(maxDiff([8, 14, 2, 5, 7, 3, 10, 5]).to.equal(8)
 ```
+
+```csharp
+public int MaxDiff(int[] arr)
+{
+    if (arr == null || arr.Length <= 1) return 0;
+
+    var minSoFar = int.MaxValue;
+    var maxDiff = 0;
+    Array.ForEach(arr, val =>
+    {
+        minSoFar = Math.Min(minSoFar, val);
+        maxDiff = Math.Max(maxDiff, val - minSoFar);
+    });
+
+    return maxDiff;
+}
+
+public override void Test()
+{
+    MaxDiff(new[] {8, 14, 2, 5, 7, 3, 10, 5}).Should().Be(8);
+}
+```

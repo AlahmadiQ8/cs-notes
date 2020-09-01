@@ -3,16 +3,10 @@
 <p>
 
 - [Arrays](#arrays)
-  - [Benefits](#benefits)
   - [Techniques](#techniques)
-  - [Sliding​​ Window](#sliding-window)
-  - [Cumulative Sum](#cumulative-sum)
-  - [Maximum Diff](#maximum-diff)
-  - [2D Arrays](#2d-arrays)
-  - [Special Tricks](#special-tricks)
 - [Binary Search](#binary-search)
-  - [Record & Move](#record--move)
-  - [Special Tricks](#special-tricks-1)
+  - [Techniques](#techniques-1)
+  - [Special Tricks](#special-tricks)
 - [Recursion](#recursion)
   - [Permutations/Combinations (Auxiliary Buffer)](#permutationscombinations-auxiliary-buffer)
   - [Backtracking](#backtracking)
@@ -55,8 +49,6 @@
 
 # Arrays
 
-## Benefits
-
 - O(1) lookup time
 - Fixed size
 - Resizing is an expensive operation
@@ -73,41 +65,38 @@
   - Sort by three colors
   - Move all zeros to end of array
 * **Kadane's algorithm**
-- Maximum subarray sum
+  - Maximum subarray sum with both *positive & negative*
+* **Sliding​​ Window**
+  - Subarray that sums to X in an array
+  - Given a String, find the longest substring with unique characters.
+* **Cumulative Sum**
+  - Find subarray that sums to zero
+    1. Create array with sums till i
+    2. Create map and check if there are duplicated sums in the array
+    3. return [prev + 1, i]
+  - Find subarray that sums to x (Sliding window works too)
+* **Maximum Diff**
+  - Similar to Kadane's algorithm
+* **2D Arrays**
+  - [Review Here](https://interviewcamp.io/courses/101687/lectures/2632010)
+  - Rotate Array
+  - Print Array ZigZag
+  - Print Array in Spiral Order
 
-## Sliding​​ Window
-
-- Subarray that sums to X in an array of **positive integers**
-
-## Cumulative Sum
-
-- Find subarray that sums to zero
-  1. Create array with sums till i
-  2. Create map and check if there are duplicated sums in the array
-  3. return [prev + 1, i]
-
-## Maximum Diff
-
-- Similar to Kadane's algorithm
-
-## 2D Arrays
-
-- [Review Here](https://interviewcamp.io/courses/101687/lectures/2632010)
-- Rotate Array
-- Print Array ZigZag
-- Print Array in Spiral Order
-
-## Special Tricks
+<!-- ## Special Tricks
 
 - Reverse words in array
 - Check if string is rotation of another
-- Longest palindrome in string
+- Longest palindrome in string -->
 
 # Binary Search
 
-## Record & Move
+- O(log(n)) lookup time
 
-- Find Closest element to target
+## Techniques
+
+* **Record & Move**
+  - Find Closest element to target
 
 ## Special Tricks
 

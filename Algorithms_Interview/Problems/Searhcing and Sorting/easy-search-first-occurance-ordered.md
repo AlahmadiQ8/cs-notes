@@ -28,3 +28,24 @@ function firstOccurence(arr, target) {
 
 firstOccurence([1, 3, 4, 6, 6, 6, 7], 6) // 3
 ```
+
+```csharp
+public void FindFirstOccurence(int[] arr, int target) {
+    if (arr == null || arr.Length == 0) return -1;
+
+    var low = 0;
+    var high = arr.Length - 1;
+    while (low <= high) {
+        var mid = low + (high - low) / 2;
+        if (arr[mid] > target || (arr[mid] == target && mid > 0 && arr[mid - 1] == target)) {
+            high = mid - 1;
+        } else if (arr[mid] < target) {
+            low = mid + 1;
+        } else {
+            return mid;
+        }
+    }
+
+    return -1;
+}
+```

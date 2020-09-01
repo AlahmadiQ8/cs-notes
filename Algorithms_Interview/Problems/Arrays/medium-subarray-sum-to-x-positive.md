@@ -67,3 +67,46 @@ xSumSubarray([13, 10, 1, 3, 4], 7) // [3, 4]
 xSumSubarray([13, 10, 1, 3, 4], 100) // null
 xSumSubarray([-2, -1, 0, 1, -2, 5, 6], 11) // [5, 6]
 ```
+
+```csharp
+public Result FindSubArraySum(int[] arr, int target) {
+    if (arr == null || arr.Length == 0) return null;
+
+    var s = 0;
+    var e = 0;
+    var sum = arr[0];
+
+    while (s < arr.Length) {
+        if (s > e) {
+            e = s;
+            sum = arr[e];
+        } else if (sum > target) {
+            sum -= arr[s++];
+        } else if (sum < target) {
+            if (e + 1 < arr.Length) {
+                sum += arr[++e];
+            } else {
+                sum -= arr[s++];
+            }
+        } else {
+            return new Result { Start = s, End = e};
+        }
+    }
+
+    return null;
+}
+
+public class Result
+{
+    public int Start { get; set; }
+    public int End { get; set; }
+}
+
+public override void Test()
+{
+    FindSubArraySum(new[] {1, 2, 3, 3, 0, 4, 6, 7}, 10).Should().BeEquivalentTo(new Result {Start = 2, End = 5});
+    FindSubArraySum(new[] {13, 10, 1, 3, 4}, 7).Should().BeEquivalentTo(new Result {Start = 3, End = 4});
+    FindSubArraySum(new[] {13, 10, 1, 3, 4}, 100).Should().BeNull();
+    FindSubArraySum(new[] {-2, -1, 0, 1, -2, 5, 6}, 11).Should().BeEquivalentTo(new Result {Start = 5, End = 6});
+}
+```

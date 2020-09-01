@@ -1,39 +1,43 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
 
 namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public void MoveZerosToStart(int[] arr) {
-            if (arr == null || arr.Length == 0) return;
-            var left = 0;
-            var cur = 0;
-            while (cur < arr.Length) {
-                if (arr[cur] == 0) Swap(arr, left++, cur++);
-                else cur++;
-            }
-        }
-        public void MoveZerosToEnd(int[] arr) {
-            if (arr == null || arr.Length == 0) return;
+        public int FindSquareRoot(int num)
+        {
+            if (num == 0) return 0;
+            if (num == 1) return 1;
 
-            var right = arr.Length - 1;
-            var cur = arr.Length - 1;
-            while (cur >= 0) {
-                if (arr[cur] == 0) Swap(arr, right--, cur--);
-                else cur--;
+            var low = 2;
+            var high = num;
+            while (low <= high)
+            {
+                var mid = low + (high - low) / 2;
+                var midTimesMid = mid * mid;
+                if (midTimesMid > num)
+                {
+                    high = mid - 1;
+                } else if (midTimesMid < num)
+                {
+                    if (Math.Pow(mid + 1, 2) > num) return mid;
+                    low = mid + 1;
+                }
+                else return mid;
             }
+
+            return low; 
         }
 
         public override void Test()
         {
-            var input = new[] {3, 0, 2, 0, 0, 4, 4, 6, 4, 4, 0};
-            MoveZerosToStart(input);
-            Console.WriteLine(input.ToCommaSeparatedString());
-            MoveZerosToEnd(input);
-            Console.WriteLine(input.ToCommaSeparatedString());
+            FindSquareRoot(16).Should().Be(4);
+            FindSquareRoot(36).Should().Be(6);
+            FindSquareRoot(9).Should().Be(3);
+            FindSquareRoot(10).Should().Be(3);
+            FindSquareRoot(4).Should().Be(2);
+            // FindSquareRoot(4).Should().Be(2);
         }
     }
 }
