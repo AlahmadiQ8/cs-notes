@@ -91,3 +91,58 @@ function changePossibilities(amountLeft, denominations) {
   }
 }
 ```
+
+
+```csharp
+// 1, 2, 3   =>    5
+// [? ? ? ? ?]
+// [2, 3 ? ? ?]
+public IList<IList<int>> ChangePossibilities(int[] coins, int sum) {
+    if (coins.Length == 0) return new List<IList<int>>();
+    var buffer = new int[sum];
+    var currentSum = 0;
+    var result = new List<IList<int>>();
+    Helper(0);
+    return result;
+
+    void Helper(int bufferIndex) {
+        if (bufferIndex == buffer.Length) {
+            if (currentSum == sum) result.Add(buffer.ToArray());
+            return;
+        }
+        if (currentSum == sum) {
+            result.Add(buffer[..bufferIndex]);
+            return;
+        }
+
+        for (var i = 0; i < coins.Length; i++) {
+            buffer[bufferIndex] = coins[i];
+            currentSum += coins[i];
+            Helper(bufferIndex + 1);
+            currentSum -= coins[i];
+        }
+    }
+}
+
+// LeetCode
+// https://leetcode.com/problems/coin-change/
+public int CoinChange(int[] coins, int amount) {
+    if (amount == 0) return -1;
+    var minLength = -1;
+    Helper(0, 0);
+    return minLength;
+
+    void Helper(int currLength, int sum) {
+        if (sum > amount) return;
+        if (sum == amount) {
+            if (minLength == -1) minLength = int.MaxValue;
+            minLength = Math.Min(minLength, currLength);
+            return;
+        }
+
+        for (var i = 0; i < coins.Length; i++) {
+            Helper(currLength + 1, sum + coins[i]);
+        }
+    }
+}
+```

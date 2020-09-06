@@ -40,3 +40,34 @@ permutations([1, 2, 3], [], 0, new Set())
 // [ 3, 1, 2 ]
 // [ 3, 2, 1 ]
 ```
+
+```csharp
+public IList<IList<int>> Permute(int[] nums)
+{
+    if (nums.Length == 0) return new List<IList<int>>();
+    var isInBuffer = new HashSet<int>();
+    var result = new List<IList<int>>();
+    var buffer = new int[nums.Length];
+    Helper(0);
+    return result;
+
+    void Helper(int bufferIndex)
+    {
+        if (bufferIndex == nums.Length)
+        {
+            result.Add(buffer.ToArray());
+            return;
+        }
+
+        for (var i = 0; i < nums.Length; i++)
+        {
+            if (isInBuffer.Contains(nums[i])) continue;
+
+            buffer[bufferIndex] = nums[i];
+            isInBuffer.Add(nums[i]);
+            Helper(bufferIndex + 1);
+            isInBuffer.Remove(nums[i]);
+        }
+    }
+}
+```

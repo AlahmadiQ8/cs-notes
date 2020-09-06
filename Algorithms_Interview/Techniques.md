@@ -6,10 +6,9 @@
   - [Techniques](#techniques)
 - [Binary Search](#binary-search)
   - [Techniques](#techniques-1)
-  - [Special Tricks](#special-tricks)
-- [Recursion](#recursion)
-  - [Permutations/Combinations (Auxiliary Buffer)](#permutationscombinations-auxiliary-buffer)
-  - [Backtracking](#backtracking)
+- [# Recursion (Permutations/Combinations)](#h1-idrecursion-permutationscombinations-140recursion-permutationscombinationsh1)
+  - [Techniques](#techniques-2)
+- [Backtracking](#backtracking)
 - [Linked Lists](#linked-lists)
   - [Slow Pointer and Fast pointer](#slow-pointer-and-fast-pointer)
   - [Linked Hash Table](#linked-hash-table)
@@ -47,7 +46,8 @@
 </p>
 </details>
 
-# Arrays
+Arrays
+======================================================================
 
 - O(1) lookup time
 - Fixed size
@@ -89,7 +89,9 @@
 - Check if string is rotation of another
 - Longest palindrome in string -->
 
-# Binary Search
+
+Binary Search
+======================================================================
 
 - O(log(n)) lookup time
 
@@ -97,23 +99,46 @@
 
 * **Record & Move**
   - Find Closest element to target
+* **Special Tricks**
+  - Search in a rotated array - *use last element as pivot*
+  - Search Unknown Array Size - *use powers of 2 to find last* 
 
-## Special Tricks
 
-- Search in a rotated array
-- Search Unknown Array Size
-
-# Recursion
-
-## Permutations/Combinations (Auxiliary Buffer)
+# Recursion (Permutations/Combinations)
+======================================================================
 
 1. Termination Cases
 2. Find Candidates that go into the buffer index
 3. Place each candidate into the buffer index
 4. Recurse to next buffer index
 
-## Backtracking
+## Techniques
+* **Combinations (Auxiliary Buffer)**
+  - Print letter combo of phone number
+  - Print all subsets of an array
+* **Permutations (Auxiliary Buffer)**
 
+
+Backtracking
+======================================================================
+
+|                  |                                                                                                                |
+| ---------------- | -------------------------------------------------------------------------------------------------------------- |
+| Core Idea        | From every ​a[i][j]​, check if there is a path to theend.                                                        |
+| Steps/Splites    | Check from left element, right element, up anddown.                                                            |
+| Converge/Collect | If any of the checks returns ​true​, return ​true​                                                                 |
+| Memoization      | Can we memoize? Yes, for every element, we cansave three states: ​`UNVISITED​`, ​`VISITING​`,`NO_PATH_FOUND​`.      |
+| Base Cases       | a[i][j]​ is Out of Bounds, Wall,or the  last element                                                            |
+
+Strategy:
+1. Core Idea
+2. Split/Steps
+3. Converge/Collect
+4. Memoize
+5. Base Case
+
+
+Problems
 - Solving mazes
 - Finding paths
 - [Soduko Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
@@ -283,17 +308,17 @@
 
 # Bit Manipulation
 
-|                            |                                     |
-| -------------------------  | ----------------------------------- |
-| Set Value to 1             | `1<<n | number`                     |
-| Set Value to 0             | `~(1<<n) & number`                  |
-| Toggle Value               | `1<<n ^ number `                    |
-| Get Bit                    | `(num,i) => ((num & (1 « i)) != 0)` or `(n>>i) & 1` |
-| Get Same Value             | `x | 0 = x` or `x ^ 0 = x`          |
-| Clear Bits in range i & j  | `~ ( 1<<(j+1) - 1) << i )`          |
-| checks if n is a power of 2| `n & (n-1) == 0` |
-|  |                           `// 00100 ==> true` |
-|  |                           `// 10110 ==> false` |
+|                             |                                                     |
+| --------------------------- | --------------------------------------------------- |
+| Set Value to 1              | `1<<n | number`                                     |
+| Set Value to 0              | `~(1<<n) & number`                                  |
+| Toggle Value                | `1<<n ^ number `                                    |
+| Get Bit                     | `(num,i) => ((num & (1 « i)) != 0)` or `(n>>i) & 1` |
+| Get Same Value              | `x | 0 = x` or `x ^ 0 = x`                          |
+| Clear Bits in range i & j   | `~ ( 1<<(j+1) - 1) << i )`                          |
+| checks if n is a power of 2 | `n & (n-1) == 0`                                    |
+|                             | `// 00100 ==> true`                                 |
+|                             | `// 10110 ==> false`                                |
 
 ## LSB (Least Significant Bit)
 

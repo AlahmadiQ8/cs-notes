@@ -86,3 +86,45 @@ findSentence(str, dict, [], 0)
 // ​​​​​i like icecream and man go​​​​​​​​​​​​​
 // ​​​​​i like icecream and mango​​​​​
 ```
+
+
+```csharp
+public bool WordBreak(string s, IList<string> wordDict)
+{
+    if (wordDict.Count == 0) return false;
+    if (s.Length == 0) return false;
+    var wordDictSet = new HashSet<string>(wordDict);
+    var memo = new State[s.Length];
+    Array.Fill(memo, State.NotVisited);
+    return Helper(0);
+
+    bool Helper(int start)
+    {
+        if (start == s.Length) return true;
+        if (memo[start] == State.NotFound) return false;
+
+        for (var i = start; i < s.Length; i++)
+        {
+            var candidate = s[start..(i + 1)];
+            if (wordDictSet.Contains(candidate))
+            {
+                if (Helper(i + 1)) return true;
+                memo[i + 1] = State.NotFound;
+            }
+
+            ;
+        }
+
+        return false;
+    }
+}
+
+public override void Test()
+{
+    WordBreak("leetcode", new List<string> {"leet", "code"}).Should().BeTrue();
+    WordBreak("leetcddode", new List<string> {"leet", "code"}).Should().BeFalse();
+    WordBreak("", new List<string> {"leet", "code"}).Should().BeFalse();
+    WordBreak("asdfsdf", new List<string>()).Should().BeFalse();
+    WordBreak("aaaaaaa", new List<string> {"aaaa", "aaa"}).Should().BeTrue();
+}
+```

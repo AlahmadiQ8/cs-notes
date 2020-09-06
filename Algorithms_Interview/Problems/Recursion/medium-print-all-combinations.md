@@ -46,3 +46,31 @@ printCombinations([1, 2, 3, 4], 3)
 // ​​​​​[ 1, 3, 4 ]​​​​​
 // ​​​​​[ 2, 3, 4 ]​​​​​
 ```
+
+```csharp
+public void PrintCombos<T>(T[] arr, int size)
+{
+    if (size == 0) return;
+    if (arr.Length < size) throw new ArgumentException("arr length cannot be less than the combination size");
+
+    var buffer = new T[size];
+    PrintCombos(arr, buffer, 0, 0);
+}
+
+public void PrintCombos<T>(T[] arr, T[] buffer, int startIndex, int bufferIndex)
+{
+    if (bufferIndex == buffer.Length)
+    {
+        buffer.LogArray();
+        return;
+    }
+
+    if (startIndex == arr.Length) return;
+
+    for (var i = startIndex; i < arr.Length; i++)
+    {
+        buffer[bufferIndex] = arr[i];
+        PrintCombos(arr, buffer, i + 1, bufferIndex + 1);
+    }
+}
+```
