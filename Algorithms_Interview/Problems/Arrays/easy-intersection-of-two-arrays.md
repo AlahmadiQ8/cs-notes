@@ -40,3 +40,23 @@ function intersect(nums1, nums2) {
   return helper(nums1, nums2)
 }
 ```
+
+```csharp
+public int[] Intersect(int[] nums1, int[] nums2) {
+    var map = new Dictionary<int, int>();
+
+    foreach (var n in nums1) {
+        if (!map.ContainsKey(n)) map[n] = 0;
+        map[n] += 1;
+    }
+
+    var result = new List<int>();
+    foreach (var n in nums2) {   
+        if (map.ContainsKey(n) && map[n] > 0) {
+            result.Add(n);
+            map[n] -= 1;
+        }
+    }
+    return result.ToArray();
+}
+```

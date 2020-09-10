@@ -26,5 +26,36 @@ namespace Algorithms
         {
             Console.WriteLine(string.Join(',', arr));
         }
+
+        public static void Log(this ListNode node)
+        {
+            var cur = node;
+            var res = new List<int>();
+            while (cur != null)
+            {
+                res.Add(cur.val);
+                cur = cur.next;
+            }
+            res.LogArray();
+        }
+        
+        public static ListNode Last(ListNode? node)
+        {
+            if (node == null) return null;
+            if (node.next == null) return node;
+            var cur = node;
+            while (cur.next != null) cur = cur.next;
+            return cur;
+        }
+
+        public static ListNode? AddLast(ListNode? head, ListNode? node)
+        {
+            if (node == null) return head;
+            if (head == null) return node;
+            var cur = head;
+            while (cur.next != null) cur = cur.next;
+            cur.next = node;
+            return head;
+        }
     }
 }

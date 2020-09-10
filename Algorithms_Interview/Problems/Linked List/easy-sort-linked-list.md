@@ -86,3 +86,57 @@ while (cur) {
   cur = cur.next
 }
 ```
+
+
+```csharp
+public ListNode Sort(ListNode head)
+{
+    if (head == null) return null;
+    
+    ListNode? list0 = null;
+    ListNode? list1 = null;
+    ListNode? list2 = null;
+
+    ListNode prev = null;
+    var cur = head;
+    while (cur != null)
+    {
+        switch (cur.val)
+        {
+            case 0:
+                list0 = Utils.AddLast(list0, cur);
+                break;
+            case 1:
+                list1 = Utils.AddLast(list1, cur);
+                break;
+            case 2:
+                list2 = Utils.AddLast(list2, cur);
+                break;
+        }
+
+        prev = cur;
+        cur = cur.next;
+        prev.next = null;
+    }
+
+
+    ListNode? result = null;
+    if (list0 != null)
+        result = Utils.AddLast(result, list0);
+    if (list1 != null)
+        result = Utils.AddLast(result, list1);
+    if (list2 != null)
+        result = Utils.AddLast(result, list2);
+
+    return result;
+}
+
+public override void Test()
+{
+    var input = new List<int> {1, 0, 2, 2, 1, 0};
+    var inputLinkedList = input.Aggregate<int, ListNode>(null, (res, val) => Utils.AddLast(res, new ListNode(val)));
+    inputLinkedList.Log();
+    inputLinkedList = Sort(inputLinkedList);
+    inputLinkedList.Log();
+}
+```

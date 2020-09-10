@@ -29,6 +29,7 @@ class LRUCache {
    */
   get(key) {
     if (!this.map.has(key)) return -1;
+
     const node = this.map.get(key);
     const val = node.val;
     this.list.remove(node);
@@ -100,5 +101,58 @@ class LinkedNode {
     this.key = key;
     this.next = this.prev = null;
   }
+}
+```
+
+
+```csharp
+public class KeyValuePair {
+    public int Key {get;}
+    public int Value {get;}
+    public KeyValuePair(int key, int value) {
+        Key = key;
+        Value = value;
+    }
+}
+
+public class LRUCache
+{
+    private readonly IDictionary<int, LinkedListNode<KeyValuePair>> _map = new Dictionary<int, LinkedListNode<KeyValuePair>>();
+    private readonly LinkedList<KeyValuePair> _linkedList = new LinkedList<KeyValuePair>();
+    private readonly int _capacity;
+
+    public LRUCache(int capacity)
+    {
+        _capacity = capacity;
+    }
+
+    public int Get(int key)
+    {
+        if (!_map.ContainsKey(key)) return -1;
+
+        var node = _map[key];
+        _linkedList.Remove(node);
+        _linkedList.AddLast(node);
+        return node.Value.Value;
+    }
+
+    public void Put(int key, int value)
+    {
+        if (_map.ContainsKey(key))
+        {
+            var node = _map[key];
+            _linkedList.Remove(node);
+        }
+        else if (_map.Count == _capacity)
+        {
+            var node = _linkedList.First();
+            _linkedList.Remove(node);
+            _map.Remove(node.Key);
+        }
+
+        var newNode = new LinkedListNode<KeyValuePair>(new KeyValuePair(key, value));
+        _linkedList.AddLast(newNode);
+        _map[key] = newNode;
+    }
 }
 ```

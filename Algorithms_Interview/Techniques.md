@@ -6,14 +6,11 @@
   - [Techniques](#techniques)
 - [Binary Search](#binary-search)
   - [Techniques](#techniques-1)
-- [# Recursion (Permutations/Combinations)](#h1-idrecursion-permutationscombinations-140recursion-permutationscombinationsh1)
+- [# Recursion (Permutations/Combinations)](#h1-idrecursion-permutationscombinations-252recursion-permutationscombinationsh1)
   - [Techniques](#techniques-2)
 - [Backtracking](#backtracking)
 - [Linked Lists](#linked-lists)
-  - [Slow Pointer and Fast pointer](#slow-pointer-and-fast-pointer)
-  - [Linked Hash Table](#linked-hash-table)
 - [Stacks](#stacks)
-  - [Expression Evaluation](#expression-evaluation)
 - [Queue](#queue)
 - [Hash Tables](#hash-tables)
   - [Rabin Karp Algorithm](#rabin-karp-algorithm)
@@ -55,36 +52,41 @@ Arrays
 
 ## Techniques
 
-* **Two pointers**
-  - Reverse Array
-  - Find two numbers that sum to an X in sorted array
-  - Given a sorted array in non-decreasing order, return an array of squares of each number, alsoin non-decreasing order
-  - Find the shortest subarray, that if sorted, results in the entire array being sorted
-* **Dutch National Flag**
-  - Quick Sort
-  - Sort by three colors
-  - Move all zeros to end of array
-* **Kadane's algorithm**
-  - Maximum subarray sum with both *positive & negative*
-* **Sliding​​ Window**
-  - Subarray that sums to X in an array
-  - Given a String, find the longest substring with unique characters.
-* **Cumulative Sum**
-  - Find subarray that sums to zero
-    1. Create array with sums till i
-    2. Create map and check if there are duplicated sums in the array
-    3. return [prev + 1, i]
-  - Find subarray that sums to x (Sliding window works too)
-* **Maximum Diff**
-  - Similar to Kadane's algorithm
-* **2D Arrays**
-  - [Review Here](https://interviewcamp.io/courses/101687/lectures/2632010)
-  - Rotate Array
-  - Print Array ZigZag
-  - Print Array in Spiral Order
+**Two pointers**
+- Reverse Array
+- Find two numbers that sum to an X in sorted array
+- Given a sorted array in non-decreasing order, return an array of squares of each number, alsoin non-decreasing order
+- Find the shortest subarray, that if sorted, results in the entire array being sorted
 
-<!-- ## Special Tricks
+**Dutch National Flag**
+- Quick Sort
+- Sort by three colors
+- Move all zeros to end of array
 
+**Kadane's algorithm**
+- Maximum subarray sum with both *positive & negative*
+
+**Sliding​​ Window**
+- Subarray that sums to X in an array
+- Given a String, find the longest substring with unique characters.
+
+**Cumulative Sum**
+- Find subarray that sums to zero
+  1. Create array with sums till i
+  2. Create map and check if there are duplicated sums in the array
+  3. return [prev + 1, i]
+- Find subarray that sums to x (Sliding window works too)
+
+**Maximum Diff**
+- Similar to Kadane's algorithm
+
+**2D Arrays**
+- [Review Here](https://interviewcamp.io/courses/101687/lectures/2632010)
+- Rotate Array
+- Print Array ZigZag
+- Print Array in Spiral Order
+
+**Special Tricks**
 - Reverse words in array
 - Check if string is rotation of another
 - Longest palindrome in string -->
@@ -97,11 +99,12 @@ Binary Search
 
 ## Techniques
 
-* **Record & Move**
-  - Find Closest element to target
-* **Special Tricks**
-  - Search in a rotated array - *use last element as pivot*
-  - Search Unknown Array Size - *use powers of 2 to find last* 
+**Record & Move**
+- Find Closest element to target
+
+**Special Tricks**
+- Search in a rotated array - *use last element as pivot*
+- Search Unknown Array Size - *use powers of 2 to find last* 
 
 
 # Recursion (Permutations/Combinations)
@@ -113,10 +116,12 @@ Binary Search
 4. Recurse to next buffer index
 
 ## Techniques
-* **Combinations (Auxiliary Buffer)**
+
+**Combinations (Auxiliary Buffer)**
   - Print letter combo of phone number
   - Print all subsets of an array
-* **Permutations (Auxiliary Buffer)**
+
+**Permutations (Auxiliary Buffer)**
 
 
 Backtracking
@@ -144,19 +149,18 @@ Problems
 - [Soduko Solver](https://www.geeksforgeeks.org/sudoku-backtracking-7/)
 - [Placing N queens on a Chess Board](https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/)
 
-# Linked Lists
+Linked Lists
+======================================================================
 
-- Sort Linked List
-  - Trick is to determine the range of values
+- Sort Linked List: Trick is to determine the range of values
 
-## Slow Pointer and Fast pointer
-
+**Slow Pointer and Fast pointer**
 - Find if list has a cycle in it
+- Find length of cycle
 - Go to the middle node
 - Find the 3rd to last element in a given linked list.
 
-## Linked Hash Table
-
+**Linked Hash Table**
 - Linked Lists provide O(n) lookup time, but preserve order
 - Hash tables provide O(1) lookup time but no order preserve
 - Combining the two gives us the following:
@@ -166,15 +170,16 @@ Problems
   - LRU Caching: Least Recently Used Cache
   - Given a doc, find smallest subarray containing all given words
 
-# Stacks
+Stacks
+======================================================================
 
-## Expression Evaluation
-
+**Expression Evaluation**
 - Postfix Expression: Use an operands stack
 - Infix Expression: Use an operands stack and operator stack
-- Infix with Parenthesis
+- Infix with Parenthesis - Same but put parentheses in operator stack
 
-# Queue
+Queue
+======================================================================
 
 - Basic implementation: Circular Array
 - Useful often in sliding windows
