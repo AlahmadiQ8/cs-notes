@@ -50,6 +50,9 @@ function maxDiffTwoTrades(arr) {
   return answer
 }
 
+7, 1, 5, 3, 6, 4
+0  0  4  2  5  3
+0  5  1  3  0  0
 expect(maxDiffTwoTrades([8, 15, 2, 5, 7, 3, 10, 5])).to.equal(15)
 //                       <-->   <----------->
 //                        1st    2nd 

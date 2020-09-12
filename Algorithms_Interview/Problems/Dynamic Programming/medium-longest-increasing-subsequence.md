@@ -1,4 +1,4 @@
-https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/
+https://leetcode.com/problems/longest-increasing-subsequence/
 
 
 ```javascript
@@ -46,4 +46,28 @@ expect(maxSequence([3, 1])).to.eq(1);
 expect(maxSequence([3, 10, 2, 1, 20])).to.eq(3);
 expect(maxSequence([50, 3, 10, 7, 40, 80])).to.eq(4);
 expect(maxSequence([1, 2, 1, 4, 5])).to.eq(4);
+```
+
+```csharp
+public int LengthOfLIS(int[] nums)
+{
+    if (nums.Length == 0) return 0;
+
+    var longest = new int[nums.Length];
+    var result = 1;
+
+    for (var i = 0; i < nums.Length; i++)
+    {
+        longest[i] = 1;
+        for (var j = 0; j < i; j++)
+        {
+            if (nums[i] > nums[j])
+                longest[i] = Math.Max(longest[i], longest[j] + 1);
+        }
+
+        result = Math.Max(result, longest[i]);
+    }
+
+    return result;
+}
 ```

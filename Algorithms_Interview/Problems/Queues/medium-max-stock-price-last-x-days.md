@@ -33,7 +33,6 @@ class StockPriceWithTime {
   constructor(windowSize) {
     this.queue = []
     this.size = windowSize
-    this.max = Number.NEGATIVE_INFINITY 
   }
 
   _getLast() {

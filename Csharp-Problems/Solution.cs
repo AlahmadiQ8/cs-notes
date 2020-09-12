@@ -3,49 +3,38 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
+using System.Net.WebSockets;
 using FluentAssertions;
 
 namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public int[] MaxSlidingWindow(int[] nums, int k)
+        public int CoinChange(int[] coins, int amount)
         {
-            if (nums.Length == 0) return new int[0];
-            if (k == 1) return nums;
-            var list = new LinkedList<int>();
-            var result = new int[nums.Length - k + 1];
-            
-            for (var i = 0; i < k; i++)
+            var max = amount + 1;
+
+            var dp = new int[amount + 1];
+
+            Array.Fill(dp, max);
+
+            dp[0] = 0;
+            for (var i = 1; i <= amount; i++)
             {
-                CleanDeque(i);
-                list.AddLast(i);
+                foreach (var coin in coins)
+                {
+                    if (coin <= i)
+                        dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
+                }
             }
 
-            result[0] = nums[list.First()];
-
-            for (var i = k; i < nums.Length; i++)
-            {
-                CleanDeque(i);
-                list.AddLast(i);
-                result[i - k + 1] = nums[list.First()];
-            }
-
-            return result;
-
-            void CleanDeque(int i)
-            {
-                if (list.Count > 0 && list.First() == i - k) list.RemoveFirst();
-
-                while (list.Count > 0 && nums[i] > nums[list.Last()]) list.RemoveLast();
-            }
+            return dp[amount] > amount ? -1 : dp[amount];
         }
 
         public override void Test()
         {
-            MaxSlidingWindow(new[] {1,3,1,2,0,5}, 3).LogArray();
-            MaxSlidingWindow(new[] {1,3,1,2,0,5}, 3).Should().BeEquivalentTo(new []{3, 3, 2, 5});
-
+            // LengthOfLIS(new[] {10, 9, 2, 5, 3, 7, 101, 18}).Should().Be(4);
+            CoinChange(new[] {1, 3, 5}, 8);
         }
     }
 }

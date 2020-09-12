@@ -146,3 +146,48 @@ public int CoinChange(int[] coins, int amount) {
     }
 }
 ```
+
+
+```csharp
+public int ChangePossibilities(int amount, int[] coins) {
+    if (coins.Length == 0 || amount == 0) return 0;
+    
+    var possibilities = new int[amount + 1];
+    possibilities[0] = 1;
+
+    Array.Sort(coins);
+
+    foreach (var coin in coins) {
+        for (var i = coin; i <= amount; i++) {
+            possibilities[i] += possibilities[i - coin];
+        }
+    }
+
+    return possibilities[amount];
+}
+```
+
+
+```csharp
+// Minmum chanfge
+public int CoinChange(int[] coins, int amount)
+{
+    var max = amount + 1;
+
+    var dp = new int[amount + 1];
+
+    Array.Fill(dp, max);
+
+    dp[0] = 0;
+    for (var i = 1; i <= amount; i++)
+    {
+        foreach (var coin in coins)
+        {
+            if (coin <= i)
+                dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
+        }
+    }
+
+    return dp[amount] > amount ? -1 : dp[amount];
+}
+```
