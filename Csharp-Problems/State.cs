@@ -4,7 +4,6 @@ namespace Algorithms
     {
         Visiting,
         Visited,
-        NotVisited,
-        NotFound,
+        Unvisited,
     }
 }

@@ -1,6 +1,6 @@
 ## Problem
 
-https://leetcode.com/explore/interview/card/amazon/79/sorting-and-searching/482/
+https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 
 Find the kth largest element in an unsorted array. Note that it is the kth
@@ -83,4 +83,40 @@ expect(findKthLargest(arr(), 6)).to.eq(4)
 expect(findKthLargest(arr(), 7)).to.eq(3) 
 expect(findKthLargest(arr(), 8)).to.eq(2) 
 expect(findKthLargest(arr(), 9)).to.eq(1) 
+```
+
+
+```csharp
+public int FindKthLargest(int[] nums, int k)
+{
+    var rand = new Random();
+    return FindKthLargestHelper(0, nums.Length - 1);
+
+    int FindKthLargestHelper(int start, int end)
+    {
+        var randomIndex = rand.Next(start, end + 1);
+        var pivotIndex = Parition(start, end, randomIndex);
+        if (pivotIndex < k - 1) return FindKthLargestHelper(pivotIndex + 1, end);
+        if (pivotIndex > k - 1) return FindKthLargestHelper(start, pivotIndex - 1);
+        return nums[pivotIndex];
+    }
+
+    int Parition(int start, int end, int pivotIndex)
+    {
+        Swap(nums, start, pivotIndex);
+        var less = start;
+        for (var i = start + 1; i <= end; i++)
+        {
+            if (nums[i] >= nums[start]) Swap(nums, ++less, i);
+        }
+
+        Swap(nums, less, start);
+        return less;
+    }
+}
+
+public override void Test()
+{
+    FindKthLargest(new[] {3, 2, 1, 5, 6, 4}, 2).Should().Be(5);
+}
 ```

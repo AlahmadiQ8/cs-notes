@@ -1,5 +1,7 @@
 ## Problem 
 
+https://leetcode.com/problems/balanced-binary-tree/
+
 ```
 Given​ ​a​ ​binary​ ​tree,​ ​determine​ ​if​ ​it​ ​is​ ​balanced
 ```
@@ -146,4 +148,24 @@ function assertEquals(a, b, desc) {
   }
 }
 
+```
+
+
+```csharp
+public bool IsBalanced(TreeNode root) {
+    if (root == null) return true;
+    
+    return IsBalancedHelper(root) != -1 ? true : false;
+    
+    int IsBalancedHelper(TreeNode node) {
+        if (node == null) return 0;
+        
+        var left = IsBalancedHelper(node.left);
+        var right = IsBalancedHelper(node.right);
+        
+        if (left == -1 || right == -1 || Math.Abs(left - right) > 1) return -1;
+        
+        return 1 + Math.Max(left, right);
+    }
+}
 ```

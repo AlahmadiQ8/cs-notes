@@ -81,3 +81,32 @@ expect(searchTarget(graph, 5)).to.be.true
 expect(searchTarget(graph, 6)).to.be.true 
 expect(searchTarget(graph, 7)).to.be.false
 ```
+
+```csharp
+public void BreadthFirstTraversal(IList<Node> nodes) {
+    var states = new Dictionary<Node, State>();
+
+    foreach (var node in nodes) states[node] = State.Unvisited;
+
+    foreach (var node in nodes) if (states[node] == State.Unvisited) Bfs(node);
+
+    void Bfs(Node node) {
+        var queue = new Queue<Node>();
+        queue.Enqueue(node);
+        states[node] = State.Visiting;
+
+        while (queue.Count > 0) {
+            var current = queue.Dequeue();
+            Console.WriteLine(current.val);
+
+            foreach (var nei in current.neighbors) {
+                if (states[nei] == State.Unvisited) {
+                    states[nei] = State.Visiting;
+                    queue.Enqueue(nei);
+                }
+                states[current] = State.Visited;
+            }
+        }
+    }
+}
+```

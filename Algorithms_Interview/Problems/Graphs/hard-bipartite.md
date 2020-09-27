@@ -63,3 +63,43 @@ function bfs(node, even, odd) {
   }
 }
 ```
+
+```csharp
+public bool IsBipartite(int[][] graph)
+{
+    var visited = new Dictionary<int, int>();
+    for (var i = 0; i < graph.Length; i++)
+    {
+        if (!visited.ContainsKey(i) && !IsBipartiteAtNode(i))
+            return false;
+    }
+
+    return true;
+
+    bool IsBipartiteAtNode(int i)
+    {
+        var queue = new Queue<int>();
+        queue.Enqueue(i);
+        visited[i] = 0;
+
+        while (queue.Count != 0)
+        {
+            var cur = queue.Dequeue();
+            var level = visited[cur];
+
+            foreach (var nei in graph[cur])
+            {
+                if (!visited.ContainsKey(nei))
+                {
+                    queue.Enqueue(nei);
+                    visited[nei] = level + 1;
+                }
+                else if (visited[nei] == visited[cur])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+}
+```

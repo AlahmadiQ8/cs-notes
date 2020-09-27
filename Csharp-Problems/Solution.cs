@@ -4,37 +4,57 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Threading;
+using System.Xml.XPath;
 using FluentAssertions;
 
 namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public int CoinChange(int[] coins, int amount)
+        public bool IsBalanced(TreeNode root)
         {
-            var max = amount + 1;
+            if (root == null) return true;
 
-            var dp = new int[amount + 1];
+            return IsBalancedHelper(root) != -1 ? true : false;
 
-            Array.Fill(dp, max);
-
-            dp[0] = 0;
-            for (var i = 1; i <= amount; i++)
+            int IsBalancedHelper(TreeNode node)
             {
-                foreach (var coin in coins)
-                {
-                    if (coin <= i)
-                        dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
-                }
-            }
+                if (node == null) return 0;
 
-            return dp[amount] > amount ? -1 : dp[amount];
+                var left = IsBalancedHelper(node.left);
+                var right = IsBalancedHelper(node.right);
+
+                if (left == -1 || right == -1 || Math.Abs(left - right) > 1) return -1;
+
+                return 1 + Math.Max(left, right);
+            }
         }
 
         public override void Test()
         {
-            // LengthOfLIS(new[] {10, 9, 2, 5, 3, 7, 101, 18}).Should().Be(4);
-            CoinChange(new[] {1, 3, 5}, 8);
+            var n4 = new TreeNode(4);
+            var n2 = new TreeNode(2);
+            var n1 = new TreeNode(1);
+            var n3 = new TreeNode(3);
+            var n6 = new TreeNode(6);
+            var n5 = new TreeNode(5);
+            var n7 = new TreeNode(7);
+
+            n4.left = n2;
+            n2.left = n1;
+            n2.right = n3;
+            n4.right = n6;
+            n6.left = n5;
+            n6.right = n7;
+
+            var root = n4;
+
+            // InOrderTraversal(root);
+            // PreOrderTraversal(root);
+            // PostOrderTraversal(root);
+            InOrderTraversalIterative(root);
+            string.Join()
         }
     }
 }

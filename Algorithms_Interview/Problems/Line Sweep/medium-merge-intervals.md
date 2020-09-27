@@ -26,3 +26,27 @@ function mergeIntervals(intervals) {
   return merged
 }
 ```
+
+```csharp
+public int[][] Merge(int[][] intervals)
+{
+    if (intervals.Length <= 1) return intervals;
+
+    var result = new List<int[]>();
+
+    Array.Sort(intervals, (a, b) => a[0] - b[0]);
+
+    result.Add(intervals[0]);
+
+    for (var i = 1; i < intervals.Length; i++)
+    {
+        var last = result.Last();
+        if (intervals[i][0] <= last[1])
+            last[1] = Math.Max(last[1], intervals[i][1]);
+        else
+            result.Add(intervals[i]);
+    }
+
+    return result.ToArray();
+}
+```

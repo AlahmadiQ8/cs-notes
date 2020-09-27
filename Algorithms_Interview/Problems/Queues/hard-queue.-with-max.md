@@ -66,3 +66,73 @@ expect(queue.getMax()).to.equal(3)
 expect(queue.dequeue()).to.equal(2)
 expect(queue.dequeue()).to.equal(3)
 ```
+
+```csharp
+public class PriorityQueue<T> where T : IComparable
+{
+    private readonly Queue<T> _queue = new Queue<T>();
+    private readonly LinkedList<T> _max = new LinkedList<T>();
+
+    public void Enqueue(T item)
+    {
+        _queue.Enqueue(item);
+        
+        while (_max.Count > 0 && _max.Last().CompareTo(item) < 0) _max.RemoveLast();
+        _max.AddLast(item);
+    }
+
+    public T Dequeue()
+    {
+        var item = _queue.Dequeue();
+        if (item.CompareTo(_max.First()) == 0) _max.RemoveFirst();
+        return item;
+    }
+
+    public T PeekMax()
+    {
+        return _max.First();
+    }
+
+    public T Peek() => _queue.Peek();
+}
+
+public override void Test()
+{
+    var priorityQueue = new PriorityQueue<int>();
+    priorityQueue.Enqueue(5);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(5);
+    
+    priorityQueue.Enqueue(4);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(5);
+    
+    priorityQueue.Enqueue(6);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(6);
+    
+    priorityQueue.Enqueue(7);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(7);
+    
+    priorityQueue.Enqueue(1);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(7);
+    
+    priorityQueue.Enqueue(2);
+    priorityQueue.Peek().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(7);
+
+    priorityQueue.Dequeue().Should().Be(5);
+    priorityQueue.PeekMax().Should().Be(7);
+    
+    priorityQueue.Dequeue().Should().Be(4);
+    priorityQueue.PeekMax().Should().Be(7);
+    
+    priorityQueue.Dequeue().Should().Be(6);
+    priorityQueue.PeekMax().Should().Be(7);
+    
+    priorityQueue.Dequeue().Should().Be(7);
+    priorityQueue.PeekMax().Should().Be(2);
+}
+```

@@ -93,3 +93,32 @@ const graph = new Graph([node, node2, node3, node4, node5, node6])
 const copiedGraph = cloneGraph(graph)
 copiedGraph.nodes[0] //? $.neighbors.map(n => n.value) = [2, 3]
 ```
+
+
+```csharp
+public Node CloneGraph(Node node)
+{
+    if (node == null) return null;
+
+    var visited = new HashSet<Node>();
+    var clones = new Dictionary<Node, Node>();
+
+    CloneHelper(node);
+    return clones[node];
+
+
+    void CloneHelper(Node n)
+    {
+        visited.Add(n);
+
+        if (!clones.ContainsKey(n)) clones[n] = new Node(n.val);
+
+        foreach (var nei in n.neighbors)
+        {
+            if (!clones.ContainsKey(nei)) clones[nei] = new Node(nei.val);
+            clones[n].neighbors.Add(clones[nei]);
+            if (!visited.Contains(nei)) CloneHelper(nei);
+        }
+    }
+}
+```

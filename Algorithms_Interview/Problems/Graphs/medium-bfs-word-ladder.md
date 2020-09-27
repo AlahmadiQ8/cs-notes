@@ -59,3 +59,57 @@ function diferByOne(w1, w2) {
 const set = new Set(['POON', 'PLEE', 'SAME', 'POIE', 'PLEA', 'PLIE', 'POIN']);
 wordLadder('TOON', 'PLEA', set) //?
 ```
+
+```csharp
+public int LadderLength(string beginWord, string endWord, IList<string> wordList)
+{
+    var visited = new HashSet<string>();
+    var l = beginWord.Length;
+    var allCombo = GetPreProcessedNeighbors();
+    var queue = new Queue<(string, int)>();
+    queue.Enqueue((beginWord, 0));
+    visited.Add(beginWord);
+
+    while (queue.Count > 0)
+    {
+        var (current, level) = queue.Dequeue();
+        if (current == endWord) return level + 1;
+
+        var unvisitedNeighbors = GetNeighbors(current).Where(n => !visited.Contains(n));
+        foreach (var neighbor in unvisitedNeighbors)
+            queue.Enqueue((neighbor, level + 1));
+        visited.Add(current);
+    }
+
+    return 0;
+
+    IList<string> GetNeighbors(string word)
+    {
+        var result = new List<string>();
+
+        for (var i = 0; i < l; i++)
+        {
+            var newWord = word[..i] + "*" + word[(i + 1)..l];
+            if (allCombo.ContainsKey(newWord)) result.AddRange(allCombo[newWord]);
+        }
+
+        return result;
+    }
+
+    IDictionary<string, IList<string>> GetPreProcessedNeighbors()
+    {
+        var allComboDict = new Dictionary<string, IList<string>>();
+        foreach (var word in wordList)
+        {
+            for (var i = 0; i < l; i++)
+            {
+                var newWord = word[..i] + "*" + word[(i + 1)..l];
+                if (!allComboDict.ContainsKey(newWord)) allComboDict[newWord] = new List<string>();
+                allComboDict[newWord].Add(word);
+            }
+        }
+
+        return allComboDict;
+    }
+}
+```

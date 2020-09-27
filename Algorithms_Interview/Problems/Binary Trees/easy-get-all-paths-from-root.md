@@ -1,5 +1,7 @@
 ## Problem
 
+https://leetcode.com/problems/binary-tree-paths/submissions/
+
 Given a binary tree, return all root-to-leaf paths.
 
 **Example**:
@@ -50,4 +52,27 @@ function binaryTreePaths(root) {
 }
 
 binaryTreePaths(root) // ['1->2->5', '1->3']​​​​​
+```
+
+```csharp
+public IList<string> BinaryTreePaths(TreeNode root)
+{
+    var result = new List<string>();
+    PreOrderTraversal(root, "");
+    return result;
+
+    void PreOrderTraversal(TreeNode node, string path)
+    {
+        if (node == null) return;
+
+        path += node.val.ToString();
+        if (node.left == null && node.right == null)
+            result.Add(path);
+        else
+            path += "->";
+
+        PreOrderTraversal(node.left, path);
+        PreOrderTraversal(node.right, path);
+    }
+}
 ```
