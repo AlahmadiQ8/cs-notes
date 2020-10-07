@@ -1,5 +1,7 @@
 ## Problem
 
+https://leetcode.com/problems/basic-calculator/solution/
+
 ```
 Given an arithmetic expression with *,/,- & + operators and single 
 digit numbers,
@@ -15,84 +17,7 @@ For example,
 | ---------- | ---------------------------------------------------- |
 | Time       | O(n)                                                 |
 | Space      | O(n) because we store a copy of operators & operands |
-
-```java
-public static int evaluate(char[] expression) {
-  if (expression == null || expression.length == 0)
-    return 0;
-
-  Stack < Character > operand = new Stack < > ();
-  Stack < Character > operator = new Stack < > ();
-
-  for (char ch: expression) {
-    if (isOperand(ch))
-      operand.push(ch);
-    else if (isOperator(ch)) {
-      while (!operator.isEmpty() && precedence(operator.peek()) >= precedence(ch)) {
-        process(operator, operand);
-      }
-      operator.push(ch);
-    }
-  }
-  while (!operator.isEmpty()) {
-    process(operator, operand);
-  }
-  return operand.pop();
-}
-/*
-* Helper functions. Ask interviewer if they want you to implement.
-*/
-private static boolean isOperand(char ch) {
-  return (ch >= '0') && (ch <= '9');
-}
-
-private static boolean isOperator(char ch) {
-  return ch == '+' || ch == '-' || ch == '*' || ch == '/';
-}
-
-private static int precedence(char ch) {
-  switch (ch) {
-    case '/':
-    case '*':
-      return 2;
-    case '+':
-    case '-':
-      return 1;
-    default:
-      throw new IllegalArgumentException("Invalid operator: " +
-        ch);
-  }
-}
-
-private static void process(Stack < Character > operator, Stack < Character > operand) {
-  int num2 = Character.getNumericValue(operand.pop());
-  int num1 = Character.getNumericValue(operand.pop());
-  char op = operator.pop();
-  int result = 0;
-  switch (op) {
-    case '/':
-      result = num1 / num2;
-      break;
-    case '*':
-      result = num1 * num2;
-      break;
-    case '+':
-      result = num1 + num2;
-      break;
-    case '-':
-      result = num1 - num2;
-      break;
-  }
-  operand.push((char)('0' + result));
-}
-```
-
-
-2 * (1 - 1) = 2
-
-            1 + 3 / 3 - 1
-operands    1, 1
-operators   +, 
+ 
 
 ```csharp
 public int Calculate(string s)
@@ -114,11 +39,11 @@ public int Calculate(string s)
         }
         else if (c == ')')
         {
-            while (operators.Peek() != '(') 
+            while (operators.Peek() != '(')
                 Eval();
             operators.Pop();
         }
-        else if (IsOperand(c))
+        else if (char.IsDigit(c))
         {
             operands.Push(c);
         }
@@ -137,8 +62,6 @@ public int Calculate(string s)
         operands.Push(result);
     }
 }
-
-private static bool IsOperand(char input) => input >= '0' && input <= '9';
 
 private readonly Dictionary<char, Func<int, int, int>> _operators = new Dictionary<char, Func<int, int, int>>
 {
@@ -167,5 +90,6 @@ public override void Test()
     Calculate("2+3/3+1").Should().Be(4);
     Calculate("5/(2+3)+1").Should().Be(2);
     Calculate("1 + 1").Should().Be(2);
+    Calculate("5-(3+1)/(6-5)").Should().Be(1);
 }
 ```

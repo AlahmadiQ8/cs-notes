@@ -1,3 +1,5 @@
+https://leetcode.com/problems/3sum/
+
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
 **Note:**
@@ -47,5 +49,39 @@ function threeSum(nums) {
     }
   }
   return result
+}
+```
+
+```csharp
+public IList<IList<int>> ThreeSum(int[] nums)
+{
+    if (nums.Length < 3) return new List<IList<int>>();
+    
+    Array.Sort(nums);
+
+    var result = new List<IList<int>>();
+    for (var i = 0; i < nums.Length - 2; i++)
+    {
+        if (i != 0 && nums[i] == nums[i - 1]) continue;
+
+        var lo = i + 1;
+        var hi = nums.Length - 1;
+        var sum = 0 - nums[i];
+        while (lo < hi)
+        {
+            if (nums[lo] + nums[hi] < sum) lo++;
+            else if (nums[lo] + nums[hi] > sum) hi--;
+            else
+            {
+                result.Add(new List<int> {nums[i], nums[lo], nums[hi]});
+                while (lo < hi && nums[lo] == nums[lo + 1]) lo++;
+                while (lo < hi && nums[hi] == nums[hi - 1]) hi--;
+                lo++;
+                hi--;
+            }
+        }
+    }
+
+    return result;
 }
 ```

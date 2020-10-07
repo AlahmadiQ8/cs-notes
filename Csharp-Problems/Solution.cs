@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading;
 using System.Xml.XPath;
 using FluentAssertions;
@@ -12,49 +15,49 @@ namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public bool IsBalanced(TreeNode root)
+        private readonly Random _rand = new Random();
+
+        public int MinMeetingRooms(int[][] intervals)
         {
-            if (root == null) return true;
-
-            return IsBalancedHelper(root) != -1 ? true : false;
-
-            int IsBalancedHelper(TreeNode node)
+            if (intervals.Length == 0) return 0;
+            var points = new List<(int time, bool isStart)>();
+            foreach (var interval in intervals)
             {
-                if (node == null) return 0;
-
-                var left = IsBalancedHelper(node.left);
-                var right = IsBalancedHelper(node.right);
-
-                if (left == -1 || right == -1 || Math.Abs(left - right) > 1) return -1;
-
-                return 1 + Math.Max(left, right);
+                var start = (interval[0], true);
+                var end = (interval[1], false);
+                points.Add(start);
+                points.Add(end);
             }
+
+            points.Sort((a, b) =>
+            {
+                if (a.time == b.time)
+                {
+                    if (!a.isStart && b.isStart) return -1;
+                    if (a.isStart && !b.isStart) return 1;
+                }
+
+                return a.time - b.time;
+            });
+
+            var maxRooms = 0;
+            var count = 0;
+            var last = 0;
+            for (var i = 0; i < points.Count; i++)
+            {
+                if (points[i].isStart) count++;
+                else count--;
+                maxRooms = Math.Max(maxRooms, count);
+            }
+
+            return maxRooms;
         }
 
         public override void Test()
         {
-            var n4 = new TreeNode(4);
-            var n2 = new TreeNode(2);
-            var n1 = new TreeNode(1);
-            var n3 = new TreeNode(3);
-            var n6 = new TreeNode(6);
-            var n5 = new TreeNode(5);
-            var n7 = new TreeNode(7);
-
-            n4.left = n2;
-            n2.left = n1;
-            n2.right = n3;
-            n4.right = n6;
-            n6.left = n5;
-            n6.right = n7;
-
-            var root = n4;
-
-            // InOrderTraversal(root);
-            // PreOrderTraversal(root);
-            // PostOrderTraversal(root);
-            InOrderTraversalIterative(root);
-            string.Join()
+            // var hs = MD5.Create();
+            // var buffer = hs.ComputeHash(Encoding.UTF8.GetBytes("omg"));
+            // var endoded = Convert.ToBase64String(buffer);
         }
     }
 }

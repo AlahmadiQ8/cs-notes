@@ -1,5 +1,7 @@
 ## Problem 
 
+https://leetcode.com/problems/inorder-successor-in-bst/
+
 Finding the successor of a Binary Search Tree (BST) is useful in several
 problems.
 
@@ -74,5 +76,37 @@ public class Node {
   public void setValue(int value) {
       this.value = value;
   }
+}
+```
+
+
+```csharp
+public TreeNode InorderSuccessor(TreeNode root, TreeNode p)
+{
+    TreeNode successor = null;
+    var cur = p;
+
+    if (cur.right != null)
+    {
+        cur = cur.right;
+        while (cur.left != null) cur = cur.left;
+        return cur;
+    }
+
+    cur = root;
+    while (cur != null)
+    {
+        if (p.val < cur.val)
+        {
+            successor = cur;
+            cur = cur.left;
+        }
+        else if (p.val > cur.val)
+            cur = cur.right;
+        else
+            break;
+    }
+
+    return successor;
 }
 ```

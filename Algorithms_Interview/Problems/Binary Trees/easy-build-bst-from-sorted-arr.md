@@ -5,47 +5,21 @@ the array.
 
 ## Solution 
 
-```java
-public static TreeNode getTree(int[] a, int start, int end) {
-  if (start > end || oob(a, start) || oob(a, end))
-    return null;
-  int mid = start + (end - start) / 2;
-  TreeNode root = new TreeNode(a[mid]);
-  root.setLeft(getTree(a, start, mid - 1));
-  root.setRight(getTree(a, mid + 1, end));
-  return root;
-}
-/*
-* Helper code. Implement only if the interviewer wants you to.
-*/
-private static boolean oob(int[] a, int index) {
-  return index < 0 || index >= a.length;
-}
-public static class TreeNode {
-  TreeNode left;
-  TreeNode right;
-  int value;
-  public TreeNode(int value) {
-    super();
-    this.value = value;
-  }
-  public TreeNode getLeft() {
-    return left;
-  }
-  public void setLeft(TreeNode left) {
-    this.left = left;
-  }
-  public TreeNode getRight() {
-    return right;
-  }
-  public void setRight(TreeNode right) {
-    this.right = right;
-  }
-  public int getValue() {
-    return value;
-  }
-  public void setValue(int value) {
-    this.value = value;
-  }
+```csharp
+public TreeNode SortedArrayToBST(int[] nums)
+{
+    return Helper(0, nums.Length - 1);
+
+    TreeNode Helper(int start, int end)
+    {
+        if (start > end) return null;
+        var mid = start + (end - start) / 2;
+        var node = new TreeNode(nums[mid])
+        {
+            left = Helper(start, mid - 1),
+            right = Helper(mid + 1, end)
+        };
+        return node;
+    }
 }
 ```

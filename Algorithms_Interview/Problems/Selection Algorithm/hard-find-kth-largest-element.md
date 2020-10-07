@@ -103,15 +103,22 @@ public int FindKthLargest(int[] nums, int k)
 
     int Parition(int start, int end, int pivotIndex)
     {
-        Swap(nums, start, pivotIndex);
+        Swap(start, pivotIndex);
         var less = start;
         for (var i = start + 1; i <= end; i++)
         {
-            if (nums[i] >= nums[start]) Swap(nums, ++less, i);
+            if (nums[i] >= nums[start]) Swap(++less, i);
         }
 
-        Swap(nums, less, start);
+        Swap(less, start);
         return less;
+    }
+
+    void Swap(int i, int j)
+    {
+        var buf = nums[i];
+        nums[i] = nums[j];
+        nums[j] = buf;
     }
 }
 

@@ -2,6 +2,23 @@
 
 - Do not Prematurely optimize
 - **Always discuss Trade-offs (Pros & Cons)**
+- Common things to ask if requierement is needed
+  - Optimize based on read heavy of write heavy 
+  - High Availibiltiy (most standard functional reqruerement)
+  - Eventual consistency is OKAY or not? or it has to be real time 
+  - Real time
+  - Analytics
+- **Traffic estimates**
+  - reads, writes per day and second
+  - storage for one year
+  - memory storage for cach: use 80/20 rule
+  - bandwidth
+- When to use NoSQL
+  - No critical transaction requiring multiple entities (ACIDity )
+  - No joins and relationships
+  - need to easily distribute accross 
+  - large amount of data with little or no structure
+- Concurency Issues
 
 # Steps Based on CTCI
 - Step 1: Scope the problem
@@ -25,27 +42,6 @@
   writes 
 - **Security**
 
-# Scalable Web Application
-
-- Single Server
-- Vertical Scaling (increasing ram, HDD etc)
-- Horizontal Scaling (multiple Servers)
-
-# Multiple Servers
-
-- Load balancers to multiple servers (not very efficient) cuz they have to
-  communicate with each other
-- Better way: Distrubuted cache, distributed storage, distributed web server
-
-![](/assets/Cloud-Environment.png)
-
-# Approaching System Design Interviews
-
-- Types
-
-1. Open Ended Service (facebook, instagram, Uber, tinyUrl)
-2. Specific System (load balancer, API Rate Limiter, Task Scheduler)
-3. Object Oriented Design (Chess Game, Parking Lot)
 
 ## Steps
 

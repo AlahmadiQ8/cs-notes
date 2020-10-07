@@ -48,12 +48,6 @@ Output: true
 ## Solution
 
 ```javascript
-const open = {
-  '(': ')',
-  '{': '}',
-  '[': ']',
-}
-
 const obj = {
   '{': '}',
   '[': ']',

@@ -66,4 +66,28 @@ public IList<string> LetterCombinations(string digits)
         }
     }
 }
+
+// Simplified solution 
+public IList<string> LetterCombinations(string digits)
+{
+    var result = new List<string>();
+    Recurse(0, "");
+    return result;
+
+    void Recurse(int index, string buffer)
+    {
+        if (index == digits.Length)
+        {
+            if (!string.IsNullOrEmpty(buffer)) result.Add(buffer);
+            return;
+        }
+
+        var letters = _phoneLetters[digits[index]];
+        if (letters.Length == 0)
+            Recurse(index + 1, buffer);
+
+        foreach (var letter in letters)
+            Recurse(index + 1, buffer + letter);
+    }
+}
 ```

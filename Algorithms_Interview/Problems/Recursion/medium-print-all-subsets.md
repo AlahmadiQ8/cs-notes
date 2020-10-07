@@ -36,3 +36,26 @@ allSets([1, 2, 3], [], 0, 0)
 // [ 2, 3 ] 
 // [ 3 ]
 ```
+
+
+```csharp
+public IList<IList<int>> Subsets(int[] nums)
+{
+    var result = new List<IList<int>>();
+    Backtrack(0, new List<int>());
+    return result;
+
+    void Backtrack(int startIndex, List<int> set)
+    {
+        result.Add(set);
+        if (startIndex == nums.Length) return;
+
+        for (var i = startIndex; i < nums.Length; i++)
+        {
+            set.Add(nums[i]);
+            Backtrack(i + 1, set.ToList());
+            set.RemoveAt(set.Count - 1);
+        }
+    }
+}
+```

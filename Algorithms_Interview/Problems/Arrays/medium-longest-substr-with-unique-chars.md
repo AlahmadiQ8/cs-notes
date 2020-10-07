@@ -1,5 +1,7 @@
 ## Problem
 
+https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
+
 ```
 Given a String, find the longest substring with unique characters.
 
@@ -31,29 +33,25 @@ Hash {
 }
 
 ```csharp
-public Indices FindLongestUniqueSubstr(string str) {
-    if (string.IsNullOrEmpty()) return null;
+public int LengthOfLongestSubstring(string s)
+{
+    if (string.IsNullOrEmpty(s)) return 0;
 
-    var start = 0;
-    var end = 0;
-    var map = new Dictionary<char, int> { { str[0], 0 }};
-    var longest = 1; 
-    var result = new Indices {Start = 0, End = 0};
+    var longest = 0;
+    var set = new HashSet<char>();
 
-    while (end + 1 < str.Length) {
-        end++;
-        if (map.ContainsKey(str[end])) {
-            start = map[str[end]] + 1;
+    int i = 0, j = 0;
+    while (i < s.Length && j < s.Length)
+    {
+        if (!set.Contains(s[j]))
+        {
+            set.Add(s[j++]);
+            longest = Math.Max(longest, j - i);
         }
-        map[str[end]] = end;
-
-        if (end - start + 1 > longest) {
-            longest = end - start + 1;
-            result.Start = start;
-            result.End = end;
-        }
+        else
+            set.Remove(s[i++]);
     }
 
-    return result;
+    return longest;
 }
 ```

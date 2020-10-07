@@ -41,3 +41,19 @@ function isMirror(t1, t2) {
   );
 }
 ```
+
+```csharp
+public bool IsSymmetric(TreeNode root) {
+    if (root == null) return true;
+    
+    return Helper(root, root);
+}
+
+private bool Helper(TreeNode left, TreeNode right) {
+    if (left == null && right == null) return true;
+    
+    if (left == null || right == null || left.val != right.val) return false;
+    
+    return Helper(left.right, right.left) && Helper(right.left, left.right);
+}
+```

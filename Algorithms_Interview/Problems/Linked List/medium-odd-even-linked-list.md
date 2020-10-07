@@ -47,3 +47,24 @@ function oddEvenList(head) {
   return head
 };
 ```
+
+```csharp
+public ListNode OddEvenList(ListNode head)
+{
+    if (head == null) return null;
+    var odd = head;
+    var even = head.next;
+    var evenHead = head.next;
+
+    while (even != null && even.next != null)
+    {
+        odd.next = even.next;
+        odd = odd.next;
+        even.next = odd.next;
+        even = even.next;
+    }
+
+    odd.next = evenHead;
+    return head;
+}
+```
