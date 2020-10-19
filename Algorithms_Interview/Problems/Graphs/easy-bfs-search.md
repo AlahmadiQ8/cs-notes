@@ -104,8 +104,9 @@ public void BreadthFirstTraversal(IList<Node> nodes) {
                     states[nei] = State.Visiting;
                     queue.Enqueue(nei);
                 }
-                states[current] = State.Visited;
             }
+            
+            states[current] = State.Visited;
         }
     }
 }

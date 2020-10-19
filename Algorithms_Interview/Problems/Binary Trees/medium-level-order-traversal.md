@@ -33,7 +33,7 @@ public IList<IList<int>> LevelOrder(TreeNode root)
     if (root == null) return new List<IList<int>>();
 
     var result = new List<IList<int>>();
-    var queue = new Queue<(TreeNode, int)>();
+    var queue = new Queue<(TreeNode node, int level)>();
     queue.Enqueue((root, 0));
     while (queue.Count != 0)
     {

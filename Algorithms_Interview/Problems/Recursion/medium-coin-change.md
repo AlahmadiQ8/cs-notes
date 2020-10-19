@@ -53,47 +53,21 @@ for (const val of map.values()) {
 
 # Variation of the problem
 
-```javascript
-// DP
-function changePossibilities(amountLeft, denominations) {
-  const arr = Array.from({ length: amountLeft + 1 }).fill(0);
-  arr[0] = 1;
-  const minStep = Math.min(...denominations);
-  for (const val of denominations) {
-    for (let i = 0; i <= amountLeft; i += minStep) {
-      if (i + val < arr.length) {
-        arr[i + val] = arr[i] + arr[i + val];
-      }
-    }
-  }
-
-  return arr[amountLeft];
-}
-
-
-function changePossibilities(amountLeft, denominations) {
-  if (denominations.length == 0) return 0;
-  return helper(0, 0);
-
-  function helper(currentIndex, sum = 0) {
-    let count = 0;
-    if (sum > amountLeft) return 0;
-    if (sum === amountLeft) return 1;
-
-    if (currentIndex === denominations.length) return 0;
-
-    while (sum <= amountLeft) {
-      count += helper(currentIndex + 1, sum);
-      sum += denominations[currentIndex];
-    }
-
-    return count;
-  }
-}
-```
-
-
 ```csharp
+public int Change(int amount, int[] coins) {
+    var dp = new int[amount + 1];
+    dp[0] = 1;
+     
+    foreach (var coin in coins) {
+        for (var i = 0; i <= amount && i + coin <= amount; i++) {
+            dp[i + coin] += dp[i]; 
+        }
+    }
+    
+    return dp[amount];
+}
+
+
 // 1, 2, 3   =>    5
 // [? ? ? ? ?]
 // [2, 3 ? ? ?]
@@ -149,45 +123,20 @@ public int CoinChange(int[] coins, int amount) {
 
 
 ```csharp
-public int ChangePossibilities(int amount, int[] coins) {
-    if (coins.Length == 0 || amount == 0) return 0;
-    
-    var possibilities = new int[amount + 1];
-    possibilities[0] = 1;
-
-    Array.Sort(coins);
-
-    foreach (var coin in coins) {
-        for (var i = coin; i <= amount; i++) {
-            possibilities[i] += possibilities[i - coin];
-        }
-    }
-
-    return possibilities[amount];
-}
-```
-
-
-```csharp
 // Minmum chanfge
 public int CoinChange(int[] coins, int amount)
 {
-    var max = amount + 1;
-
     var dp = new int[amount + 1];
-
-    Array.Fill(dp, max);
-
+    Array.Fill(dp, amount + 1);
     dp[0] = 0;
-    for (var i = 1; i <= amount; i++)
-    {
-        foreach (var coin in coins)
-        {
-            if (coin <= i)
-                dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
+    
+    for (var i = 0; i <= amount; i++) {
+        foreach (var coin in coins) {
+            if (i - coin < 0) continue;
+            dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
         }
     }
-
-    return dp[amount] > amount ? -1 : dp[amount];
+    
+    return dp[amount] <= amount ? dp[amount] : -1;
 }
 ```

@@ -68,32 +68,32 @@ expect(queue.dequeue()).to.equal(3)
 ```
 
 ```csharp
-public class PriorityQueue<T> where T : IComparable
+public class PriorityQueue
 {
-    private readonly Queue<T> _queue = new Queue<T>();
-    private readonly LinkedList<T> _max = new LinkedList<T>();
+    private readonly Queue<int> _queue = new Queue<int>();
+    private readonly LinkedList<int> _max = new LinkedList<int>();
 
-    public void Enqueue(T item)
+    public void Enqueue(int item)
     {
         _queue.Enqueue(item);
         
-        while (_max.Count > 0 && _max.Last().CompareTo(item) < 0) _max.RemoveLast();
+        while (_max.Count > 0 && _max.Last() < item) _max.RemoveLast();
         _max.AddLast(item);
     }
 
-    public T Dequeue()
+    public int Dequeue()
     {
         var item = _queue.Dequeue();
-        if (item.CompareTo(_max.First()) == 0) _max.RemoveFirst();
+        if (item == _max.First) _max.RemoveFirst();
         return item;
     }
 
-    public T PeekMax()
+    public int PeekMax()
     {
         return _max.First();
     }
 
-    public T Peek() => _queue.Peek();
+    public int Peek() => _queue.Peek();
 }
 
 public override void Test()

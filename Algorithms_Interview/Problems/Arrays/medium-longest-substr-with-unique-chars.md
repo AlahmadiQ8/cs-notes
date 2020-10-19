@@ -41,7 +41,7 @@ public int LengthOfLongestSubstring(string s)
     var set = new HashSet<char>();
 
     int i = 0, j = 0;
-    while (i < s.Length && j < s.Length)
+    while (j < s.Length)
     {
         if (!set.Contains(s[j]))
         {

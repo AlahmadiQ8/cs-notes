@@ -43,7 +43,6 @@ public int MinMeetingRooms(int[][] intervals) {
 
     var maxRooms = 0;
     var count = 0;
-    var last = 0;
     for (var i = 0; i < points.Count; i++) {
         if (points[i].isStart) count++;
         else count--;
