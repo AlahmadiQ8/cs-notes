@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
@@ -7,83 +8,58 @@ namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public string AlienOrder(string[] words)
+        private Dictionary<int, IList<int>> _cols = new Dictionary<int, IList<int>>();
+
+        public IList<IList<int>> VerticalOrder(TreeNode root)
         {
-            var adjList = new Dictionary<char, IList<char>>();
-            var result = "";
-            var state = new Dictionary<char, State>();
+            if (root == null) return new List<IList<int>>();
 
-            // Step 0: add all letters to the graph
-            foreach (var word in words)
+            var queue = new Queue<(TreeNode node, int colIndex)>();
+            queue.Enqueue((root, 0));
+            var minIndex = int.MaxValue;
+            var maxIndex = int.MinValue;
+
+            while (queue.Count != 0)
             {
-                foreach (var c in word)
-                {
-                    adjList[c] = new List<char>();
-                    state[c] = State.Unvisited;
-                }
+                var (cur, index) = queue.Dequeue();
+                if (!_cols.ContainsKey(index)) _cols[index] = new List<int>();
+                _cols[index].Add(cur.val);
+
+                minIndex = Math.Min(minIndex, index);
+                maxIndex = Math.Max(maxIndex, index);
+
+                if (cur.left != null) queue.Enqueue((cur.left, index - 1));
+                if (cur.right != null) queue.Enqueue((cur.right, index + 1));
             }
 
-            // Step 1: add edges        
-            for (var i = 0; i < words.Length - 1; i++)
+            var result = new List<IList<int>>();
+            for (var i = minIndex; i <= maxIndex; i++)
             {
-                var word1 = words[i];
-                var word2 = words[i + 1];
-
-                if (word1.Length > word2.Length && word1.StartsWith(word2))
-                    return "";
-
-                for (var j = 0; j < Math.Min(word1.Length, word2.Length); j++)
-                {
-                    if (word1[j] != word2[j])
-                    {
-                        adjList[word2[j]].Add(word1[j]);
-                        break;
-                    }
-                }
+                result.Add(_cols[i]);
             }
 
-            // Step 2: Dfs
-            foreach (var c in adjList.Keys)
-                if (state[c] == State.Unvisited && !DepthFirst(c)) return "";
-            
             return result;
-
-            bool DepthFirst(char node)
-            {
-                state[node] = State.Visiting;
-
-                foreach (var nei in adjList[node])
-                {
-                    if (state[nei] == State.Visiting) return false;
-                    if (state[nei] == State.Unvisited && !DepthFirst(nei))
-                    {
-                        return false;
-                    }
-                }
-
-                result = result + node;
-                state[node] = State.Visited;
-                return true;
-            }
         }
 
-        private enum State
-        {
-            Unvisited,
-            Visited,
-            Visiting
-        }
 
         public override void Test()
         {
-            AlienOrder(new[]
+            TreeNode? root = new TreeNode
             {
-                "aac",
-                "aabb",
-                "aaba"
-            }).Should().Be("cba");
-            AlienOrder(new[] {"wrt", "wrf", "er", "ett", "rftt"}).Should().Be("wertf");
-            // AlienOrder(new []{"z" , "x"})
+                val = 3,
+                left = new TreeNode(9),
+                right = new TreeNode
+                {
+                    val = 20,
+                    left = new TreeNode(15),
+                    right = new TreeNode(7)
+                }
+            };
+            var res = VerticalOrder(root);
+            foreach (var re in res)
+            {
+                re.LogArray();
+            }
         }
     }
 }
