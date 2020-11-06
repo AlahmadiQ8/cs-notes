@@ -34,10 +34,7 @@ public int MinMeetingRooms(int[][] intervals) {
 
     points.Sort((a, b) => {
         if (a.time == b.time)
-        {
-            if (!a.isStart && b.isStart) return -1;
-            if (a.isStart && !b.isStart) return 1;
-        }
+            return a.isStart && !b.isStart ? 1: -1;
         return a.time - b.time;
     });
 

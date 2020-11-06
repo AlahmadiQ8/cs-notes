@@ -1,5 +1,7 @@
 ## Problem
 
+https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/solution/
+
 ```
 You have k lists of sorted integers in non-decreasing order. Find the smallest range that includes at least one number from each of the k lists.
 
@@ -39,35 +41,42 @@ Output: [1,7]
 | Space      | O(m)  |
 
 ```java
+class Pair {
+    int list_index;
+    int cur_index;
+    int value;
+
+    public Pair(int list_index, int cur_index, int value) {
+        this.list_index = list_index;
+        this.cur_index = cur_index;
+        this.value = value;
+    }
+}
+
 public int[] smallestRange(List<List<Integer>> nums) {
-    PriorityQueue<LinkedList<Integer>> heapMin = new PriorityQueue<>(nums.size(), Comparator.comparing(LinkedList::getFirst));
+    PriorityQueue<Pair> heapMin = new PriorityQueue<>(nums.size(), Comparator.comparingInt(a -> a.value));
 
     int min = Integer.MAX_VALUE;
     int max = Integer.MIN_VALUE;
     int diff = Integer.MAX_VALUE;
-    for (List<Integer> n : nums) {
-        var list = new LinkedList<>(n);
-        heapMin.add(list);
-        if (list.getFirst() > max) {
-            max = list.getFirst();
-        }
+    for (var i = 0; i < nums.size(); i++) {
+        heapMin.add(new Pair(i, 0, nums.get(i).get(0)));
+        max = Math.max(max, nums.get(i).get(0));
     }
 
     int lastMax = max;
-    while (!heapMin.peek().isEmpty()) {
-        int curMin = heapMin.peek().getFirst();
-        if (lastMax - curMin < diff) {
-            min = curMin;
+    while (true) {
+        Pair curMin = heapMin.remove();
+        if (lastMax - curMin.value < diff) {
+            min = curMin.value;
             max = lastMax;
             diff = max - min;
         }
+        if (curMin.cur_index == nums.get(curMin.list_index).size() - 1) break;
+        var next = new Pair(curMin.list_index, curMin.cur_index + 1, nums.get(curMin.list_index).get(curMin.cur_index + 1));
 
-        var removed = heapMin.remove();
-        removed.removeFirst();
-        if (removed.isEmpty()) break;
-
-        if (removed.getFirst() > lastMax) lastMax = removed.getFirst();
-        heapMin.add(removed);
+        if (next.value > lastMax) lastMax = next.value;
+        heapMin.add(next);
     }
     return new int[]{min, max};
 }

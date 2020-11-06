@@ -111,8 +111,6 @@ public bool WordBreak(string s, IList<string> wordDict)
                 if (Helper(i + 1)) return true;
                 memo[i + 1] = State.NotFound;
             }
-
-            ;
         }
 
         return false;

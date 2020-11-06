@@ -93,10 +93,10 @@ public void BreadthFirstTraversal(IList<Node> nodes) {
     void Bfs(Node node) {
         var queue = new Queue<Node>();
         queue.Enqueue(node);
-        states[node] = State.Visiting;
 
         while (queue.Count > 0) {
             var current = queue.Dequeue();
+            states[node] = State.Visiting;
             Console.WriteLine(current.val);
 
             foreach (var nei in current.neighbors) {

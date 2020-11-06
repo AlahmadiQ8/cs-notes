@@ -6,6 +6,8 @@ Diameter of a Graph: Given a directed graph, find the length of the longest path
 
 ## Solution
 
+* Strategy: Topological Sort
+
 | Complexity | Big O |
 |------------|-------|
 | Time       | O(N)  |

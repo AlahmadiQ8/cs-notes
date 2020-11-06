@@ -107,7 +107,7 @@ class Checker
 
     public int GetBoxNumber(int i, int j)
     {
-        return i / 3 * 3 + j / 3;
+        return (i / 3) * 3 + j / 3;
     }
 }
 

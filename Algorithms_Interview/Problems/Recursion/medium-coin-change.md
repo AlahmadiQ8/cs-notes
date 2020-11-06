@@ -54,6 +54,7 @@ for (const val of map.values()) {
 # Variation of the problem
 
 ```csharp
+// Number of different ways we can get target amount
 public int Change(int amount, int[] coins) {
     var dp = new int[amount + 1];
     dp[0] = 1;
@@ -100,6 +101,7 @@ public IList<IList<int>> ChangePossibilities(int[] coins, int sum) {
 
 // LeetCode
 // https://leetcode.com/problems/coin-change/
+// compute the fewest number of coins that you need to make up that amount
 public int CoinChange(int[] coins, int amount) {
     if (amount == 0) return -1;
     var minLength = -1;
@@ -123,7 +125,7 @@ public int CoinChange(int[] coins, int amount) {
 
 
 ```csharp
-// Minmum chanfge
+// compute the fewest number of coins that you need to make up that amount
 public int CoinChange(int[] coins, int amount)
 {
     var dp = new int[amount + 1];

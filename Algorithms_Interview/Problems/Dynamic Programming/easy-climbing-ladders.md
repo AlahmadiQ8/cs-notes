@@ -46,7 +46,7 @@ public int ClimbStairs(int n)
 }
 ```
 
-### Bottom down DP
+### Top down DP
 
 ```csharp
 public int ClimbStairs(int n)
