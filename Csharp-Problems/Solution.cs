@@ -11,32 +11,43 @@ namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public ListNode SwapPairs(ListNode head)
+        public string DecodeString(string s)
         {
-            if (head == null) return head;
+            return Backtrack(s, 0, s.Length - 1, "");
+        }
 
-            var dummy = new ListNode(-1);
-            dummy.next = head;
-            var prev = dummy;
+        private string Backtrack(string s, int start, int end, string result)
+        {
+            if (start > end || s[start] == ']') return result;
+            if (!char.IsDigit(s[start]))
+                return Backtrack(s, start + 1, end, result + s[start]);
 
-            while (head != null && head.next != null)
+            var times = s[start] - '0';
+            while (start + 1 < s.Length && char.IsDigit(s[start + 1]))
             {
-                var first = head;
-                var second = head.next;
-
-                prev.next = second;
-                first.next = second.next;
-                second.next = first;
-
-                prev = first;
-                head = first.next;
+                start++;
+                times = 10 * times + (s[start] - '0');
             }
 
-            return dummy.next;
+            var opening = start + 1;
+            var closing = start + 1;
+            var count = 1;
+            while (count != 0)
+            {
+                closing++;
+                if (s[closing] == '[') count++;
+                else if (s[closing] == ']') count--;
+            }
+
+            var curResult = Backtrack(s, opening + 1, closing - 1, "");
+            curResult = string.Concat(Enumerable.Repeat(curResult, times));
+            return Backtrack(s, closing + 1, s.Length - 1, result + curResult);
         }
 
         public override void Test()
         {
+            DecodeString("3[a2[c]]").Should().Be("accaccacc");
+            DecodeString("3[a]2[bc]").Should().Be("aaabcbc");
         }
     }
 }
