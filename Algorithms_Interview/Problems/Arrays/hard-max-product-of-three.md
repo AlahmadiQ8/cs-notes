@@ -5,45 +5,29 @@ the integers.
 
 # Solution (Optimal - O(n) time - O(1) space)
 
-```javascript
-function highestProductOf3(arr) {
-  if (arr.length < 3) {
-    throw new Error('Less than 3 items!');
-  }
+```csharp
+public int MaximumProduct(int[] nums)
+{
+    if (nums.Length < 3) return -1;
+    var hiProd2 = nums[0] * nums[1];
+    var loProd2 = nums[0] * nums[1];
+    var hi = Math.Max(nums[0], nums[1]);
+    var lo = Math.Min(nums[0], nums[1]);
+    var result = nums[0] * nums[1] * nums[2];
 
-  let highest = Math.max(arr[0], arr[1]);
-  let lowest = Math.min(arr[0], arr[1]);
+    for (var i = 2; i < nums.Length; i++)
+    {
+        var num = nums[i];
+        result = Math.Max(result, Math.Max(num * hiProd2, num * loProd2));
+        
+        hiProd2 = Math.Max(hiProd2, Math.Max(num * hi, num * lo));
+        loProd2 = Math.Min(loProd2, Math.Min(num * hi, num * lo));
+        
+        hi = Math.Max(hi, num);
+        lo = Math.Min(lo, num);
+    }
 
-  let highestProductOf2 = arr[0] * arr[1];
-  let lowestProductOf2 = arr[0] * arr[1];
-
-  let highestProductOf3 = arr[0] * arr[1] * arr[2];
-
-  // Walk through items, starting at index 2
-  for (let i = 2; i < arr.length; i++) {
-    highestProductOf3 = Math.max(
-      highestProductOf3,
-      arr[i] * highestProductOf2,
-      arr[i] * lowestProductOf2
-    );
-
-    highestProductOf2 = Math.max(
-      highestProductOf2,
-      arr[i] * highest,
-      arr[i] * lowest
-    );
-
-    lowestProductOf2 = Math.min(
-      lowestProductOf2,
-      arr[i] * highest,
-      arr[i] * lowest
-    );
-
-    highest = Math.max(highest, arr[i]);
-    lowest = Math.min(lowest, arr[i]);
-  }
-
-  return highestProductOf3;
+    return result;
 }
 ```
 

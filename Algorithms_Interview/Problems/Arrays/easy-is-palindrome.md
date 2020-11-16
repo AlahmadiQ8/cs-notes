@@ -27,23 +27,27 @@ The string will only contain lowercase characters a-z. The maximum length of the
 
 ## Solution
 
-```javascript
-function validPalindrome(s) {
-  for (let i = 0; i < s.length >> 1; i++) {
-    if (s[i] != s[s.length - 1 - i]) {
-      const j = s.length - 1 - i
-      return isPalindrome(s, i + 1, j) || isPalindrome(s, i, j - 1)
+```csharp
+public bool ValidPalindrome(string s)
+{
+    var i = 0;
+    var j = s.Length - 1;
+    while (i < j)
+    {
+        if (s[i] != s[j]) return IsPalindromRange(s, i + 1, j) || IsPalindromRange(s, i, j - 1);
+        i++;
+        j--;
     }
-  }
-  return true
+
+    return true;
 }
 
-function isPalindrome(s, i, j) {
-  while (i < j) {
-    if (s[i] !== s[j]) return false
-    i++
-    j--
-  }
-  return true
+private bool IsPalindromRange(string s, int i, int j)
+{
+    while (i < j)
+        if (s[i++] != s[j--])
+            return false;
+    
+    return true;
 }
 ```

@@ -32,7 +32,7 @@ public string NextClosestTime(string time)
     Array.Sort(digits);
 
     // HH:M_
-    result[4] = FindNext(result[4], (char) ('9' + 1), digits);
+    result[4] = FindNext(result[4], '9', digits);
     if (result[4] > time[4]) return new string(result);
 
     // HH:_M
@@ -41,7 +41,7 @@ public string NextClosestTime(string time)
 
     // H_:MM
     result[1] = result[0] != '2'
-        ? FindNext(result[1], (char) ('9' + 1), digits)
+        ? FindNext(result[1], '9', digits)
         : FindNext(result[1], '3', digits);
     if (result[1] > time[1]) return new string(result);
 

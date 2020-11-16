@@ -98,31 +98,26 @@ public int[] MaxSlidingWindow(int[] nums, int k)
 {
     if (nums.Length == 0) return new int[0];
     if (k == 1) return nums;
-    var list = new LinkedList<int>();
-    var result = new int[nums.Length - k + 1];
-    
+    var max = new LinkedList<int>();
+    var queue = new int[nums.Length - k + 1];
+
     for (var i = 0; i < k; i++)
     {
-        CleanDeque(i);
-        list.AddLast(i);
+        if (max.Count > 0 && max.First() == i - k) max.RemoveFirst();
+        while (max.Count > 0 && nums[i] > nums[max.Last()]) max.RemoveLast();
+        max.AddLast(i);
     }
 
-    result[0] = nums[list.First()];
+    queue[0] = nums[max.First()];
 
     for (var i = k; i < nums.Length; i++)
     {
-        CleanDeque(i);
-        list.AddLast(i);
-        result[i - k + 1] = nums[list.First()];
+        if (max.Count > 0 && max.First() == i - k) max.RemoveFirst();
+        while (max.Count > 0 && nums[i] > nums[max.Last()]) max.RemoveLast();
+        max.AddLast(i);
+        queue[i - k + 1] = nums[max.First()];
     }
 
-    return result;
-
-    void CleanDeque(int i)
-    {
-        if (list.Count > 0 && list.First() == i - k) list.RemoveFirst();
-
-        while (list.Count > 0 && nums[i] > nums[list.Last()]) list.RemoveLast();
-    }
+    return queue;
 }
 ```

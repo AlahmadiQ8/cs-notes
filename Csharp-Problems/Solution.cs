@@ -11,43 +11,36 @@ namespace Algorithms
 {
     public class Solution : AbstractSolution
     {
-        public string DecodeString(string s)
+        public int[] MaxSlidingWindow(int[] nums, int k)
         {
-            return Backtrack(s, 0, s.Length - 1, "");
-        }
-
-        private string Backtrack(string s, int start, int end, string result)
-        {
-            if (start > end || s[start] == ']') return result;
-            if (!char.IsDigit(s[start]))
-                return Backtrack(s, start + 1, end, result + s[start]);
-
-            var times = s[start] - '0';
-            while (start + 1 < s.Length && char.IsDigit(s[start + 1]))
+            if (nums.Length == 0) return new int[0];
+            if (k == 1) return nums;
+            var max = new LinkedList<int>();
+            var queue = new int[nums.Length - k + 1];
+    
+            for (var i = 0; i < k; i++)
             {
-                start++;
-                times = 10 * times + (s[start] - '0');
+                if (max.Count > 0 && max.First() == i - k) max.RemoveFirst();
+                while (max.Count > 0 && nums[i] > nums[max.Last()]) max.RemoveLast();
+                max.AddLast(i);
             }
 
-            var opening = start + 1;
-            var closing = start + 1;
-            var count = 1;
-            while (count != 0)
+            queue[0] = nums[max.First()];
+
+            for (var i = k; i < nums.Length; i++)
             {
-                closing++;
-                if (s[closing] == '[') count++;
-                else if (s[closing] == ']') count--;
+                if (max.Count > 0 && max.First() == i - k) max.RemoveFirst();
+                while (max.Count > 0 && nums[i] > nums[max.Last()]) max.RemoveLast();
+                max.AddLast(i);
+                queue[i - k + 1] = nums[max.First()];
             }
 
-            var curResult = Backtrack(s, opening + 1, closing - 1, "");
-            curResult = string.Concat(Enumerable.Repeat(curResult, times));
-            return Backtrack(s, closing + 1, s.Length - 1, result + curResult);
+            return queue;
         }
 
         public override void Test()
         {
-            DecodeString("3[a2[c]]").Should().Be("accaccacc");
-            DecodeString("3[a]2[bc]").Should().Be("aaabcbc");
+            // int.
         }
     }
 }

@@ -47,40 +47,28 @@ Output: true
 
 ## Solution
 
-```javascript
-const obj = {
-  '{': '}',
-  '[': ']',
-  '(': ')'
+```csharp
+private HashSet<char> _openers = new HashSet<char>(new[] {'(', '[', '{'});
+
+private char GetMatchingOpener(char closer)
+{
+   return closer switch
+   {
+       ')' => '(',
+       '}' => '{',
+       ']' => '['
+   };
 }
 
-function isValid(code) {
-  const stack = []
-  const openers = new Set(['(', '[', '{']);
-  const closers = new Set([')', ']', '}']);
+public bool IsValid(string s)
+{
+   var stack = new Stack<char>();
+   foreach (var c in s)
+   {
+       if (_openers.Contains(c)) stack.Push(c);
+       else if (stack.Pop() != GetMatchingOpener(c)) return false;
+   }
 
-  for (const bracket of code) {
-    if (openers.has(bracket)) {
-      stack.push(obj[bracket])
-    } else if (closers.has(bracket)) {
-      if (!stack.length) return false
-      const lastUnclosedOpener = stack.pop()
-      if (lastUnclosedOpener !== bracket) return false
-    } 
-  }
-
-  return stack.length === 0
+   return stack.Count == 0;
 }
-
-
-isValid('()[]{}') //?
-isValid('((()))') //?
-isValid('({[]})') //?
-isValid('()') //?
-isValid('') //?
-isValid('') //?
-
-isValid('{]') //?
-isValid('[{]') //?
-isValid('[(])') //?
 ```

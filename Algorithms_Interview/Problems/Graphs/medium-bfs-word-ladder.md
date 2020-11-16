@@ -73,11 +73,13 @@ public int LadderLength(string beginWord, string endWord, IList<string> wordList
     while (queue.Count > 0)
     {
         var (current, level) = queue.Dequeue();
-        if (current == endWord) return level + 1;
-
-        var unvisitedNeighbors = GetNeighbors(current).Where(n => !visited.Contains(n));
+        var unvisitedNeighbors = GetNeighbors(current);
         foreach (var neighbor in unvisitedNeighbors)
-            queue.Enqueue((neighbor, level + 1));
+        {
+            if (endWord == neighbor) return level + 2;
+            if (!visited.Contains(neighbor)) queue.Enqueue((neighbor, level + 1));
+        }
+
         visited.Add(current);
     }
 
@@ -90,7 +92,12 @@ public int LadderLength(string beginWord, string endWord, IList<string> wordList
         for (var i = 0; i < l; i++)
         {
             var newWord = word[..i] + "*" + word[(i + 1)..l];
-            if (allCombo.ContainsKey(newWord)) result.AddRange(allCombo[newWord]);
+
+            if (!allCombo.ContainsKey(newWord)) continue;
+            foreach (var w in allCombo[newWord])
+            {
+                if (w != word) result.Add(w);
+            }
         }
 
         return result;

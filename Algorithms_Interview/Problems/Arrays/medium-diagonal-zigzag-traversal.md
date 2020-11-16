@@ -52,8 +52,8 @@ public int[] FindDiagonalOrder(int[][] matrix)
         }
         if (row >= M)
         {
-            row = M - 1;
             col += 2;
+            row = M - 1;
             d ^= 1;
         }
 

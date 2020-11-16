@@ -37,6 +37,30 @@ private readonly IDictionary<char, string> _phoneLetters = new Dictionary<char, 
     {'9', "wxyz"},
 };
 
+// Simplified solution 
+public IList<string> LetterCombinations(string digits)
+{
+    var result = new List<string>();
+    Recurse(0, "");
+    return result;
+
+    void Recurse(int index, string buffer)
+    {
+        if (index == digits.Length)
+        {
+            if (!string.IsNullOrEmpty(buffer)) result.Add(buffer);
+            return;
+        }
+
+        var letters = _phoneLetters[digits[index]];
+        if (letters.Length == 0)
+            Recurse(index + 1, buffer);
+
+        foreach (var letter in letters)
+            Recurse(index + 1, buffer + letter);
+    }
+}
+
 public IList<string> LetterCombinations(string digits)
 {
     var result = new List<string>();
@@ -64,30 +88,6 @@ public IList<string> LetterCombinations(string digits)
             LetterCombinationsRecursion(startIndex + 1);
             buffer = buffer.Remove(buffer.Length - 1);
         }
-    }
-}
-
-// Simplified solution 
-public IList<string> LetterCombinations(string digits)
-{
-    var result = new List<string>();
-    Recurse(0, "");
-    return result;
-
-    void Recurse(int index, string buffer)
-    {
-        if (index == digits.Length)
-        {
-            if (!string.IsNullOrEmpty(buffer)) result.Add(buffer);
-            return;
-        }
-
-        var letters = _phoneLetters[digits[index]];
-        if (letters.Length == 0)
-            Recurse(index + 1, buffer);
-
-        foreach (var letter in letters)
-            Recurse(index + 1, buffer + letter);
     }
 }
 ```

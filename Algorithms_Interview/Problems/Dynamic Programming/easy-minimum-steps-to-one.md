@@ -1,34 +1,36 @@
 ```javascript
 const memo = new Map();
 function minimumStepsToOne(num) {
-  const divBy3 = num % 3 === 0;
-  const divBy2 = num % 2 === 0;
+  let divBy3 = Number.POSITIVE_INFINITY;
+  let divBy2 = Number.POSITIVE_INFINITY;
+  let substractOne = Number.POSITIVE_INFINITY;
+
   if (num <= 1) return 0;
 
-  let min = Number.POSITIVE_INFINITY;
-
-  if (divBy3) {
-    const val = memo.has(num / 3)
+  if (num % 3 === 0) {
+    divBy3 = memo.has(num / 3)
       ? memo.get(num / 3)
       : minimumStepsToOne(num / 3);
-    min = Math.min(min, 1 + val);
-    memo.set(num / 3, val);
+    memo.set(num / 3, divBy3);
   }
-  if (divBy2) {
-    const val = memo.has(num / 2)
+  if (num % 2 === 0) {
+    divBy2 = memo.has(num / 2)
       ? memo.get(num / 2)
       : minimumStepsToOne(num / 2);
-    min = Math.min(min, 1 + val);
-    memo.set(num / 2, val);
+    memo.set(num / 2, divBy2);
   }
 
-  const val = memo.has(num - 1)
+  
+  substractOne = memo.has(num - 1)
     ? memo.get(num - 1)
     : minimumStepsToOne(num - 1);
-  min = Math.min(min, 1 + val);
-  memo.set(num - 1, val);
-  return min;
+  memo.set(num - 1, substractOne);
+  
+
+  return Math.min(1 + divBy3, 1 + divBy2, 1 + substractOne);
 }
+
+minimumStepsToOne(5678)
 
 expect(minimumStepsToOne(10)).to.eq(3);
 expect(minimumStepsToOne(4)).to.eq(2); 
