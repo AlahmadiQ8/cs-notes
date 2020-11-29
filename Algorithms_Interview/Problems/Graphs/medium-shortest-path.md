@@ -69,9 +69,9 @@ function bfsGetPath(graph, startNode, endNode) {
     for (const ne of graph[cur]) {
       if (!visited.has(ne)) {
         if (1 + dist[cur] < dist[ne]) {
-          parents[ne] = cur 
+          parents[ne] = cur
+          dist[ne] = 1 + dist[cur]
         }
-        dist[ne] = Math.min(dist[ne], 1 + dist[cur])
         queue.push(ne)
       }
     }
