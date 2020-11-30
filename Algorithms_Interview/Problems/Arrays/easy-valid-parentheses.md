@@ -66,7 +66,7 @@ public bool IsValid(string s)
    foreach (var c in s)
    {
        if (_openers.Contains(c)) stack.Push(c);
-       else if (stack.Pop() != GetMatchingOpener(c)) return false;
+       else if (stack.Count > 0 && stack.Pop() != GetMatchingOpener(c)) return false;
    }
 
    return stack.Count == 0;
