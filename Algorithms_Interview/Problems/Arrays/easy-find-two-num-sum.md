@@ -1,5 +1,5 @@
-2 Sum Problem: Given a sorted array of integers, find two numbers in the array 
-that sum to an integer X.For example, given a=[1,2,3,5,6,7] and X=11, the answer 
+2 Sum Problem: Given a sorted array of integers, find two numbers in the array
+that sum to an integer X. For example, given a=[1,2,3,5,6,7] and X=11, the answer
 would be 5 and 6, which sum to 11
 
 ## Technique
@@ -8,10 +8,10 @@ would be 5 and 6, which sum to 11
 
 ## Notes
 
-- Are there duplicates? 
-- What to return if there is more than one answer? 
+- Are there duplicates?
+- What to return if there is more than one answer?
 
-```javascript 
+```javascript
 function findSub(arr, t) {
   if (!arr || arr.length <= 1) return [-1, -1]
 
@@ -73,17 +73,17 @@ public void SquareAndKeepOrder(int[] arr) {
     if (arr == null || arr.Length == 0) return;
 
     var firstZeroOrPositiveIndex = GetFirstZeroOrPositiveIndex(arr);
-    
+
     if (firstZeroOrPositiveIndex = -1)
         Array.Reverse(arr);
-    else 
+    else
         Reverse(arr, 0, firstZeroOrPositiveIndex);
 
     for (var i = 0; i < arr.Length; i++) arr[i] = arr[i] * arr[i];
 }
 
 public int GetFirstZeroOrPositiveIndex(arr) {
-    var res = 0; 
+    var res = 0;
     while (arr[res] < 0) res++;
     if (res == arr.Length) return -1;
 }
