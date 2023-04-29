@@ -1,8 +1,3 @@
----
-tags:
-  - medium
----
-
 ## [Shortest Unsorted Continuous Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)
 
 Given an array of integers, find the shortest subarray, that if sorted,

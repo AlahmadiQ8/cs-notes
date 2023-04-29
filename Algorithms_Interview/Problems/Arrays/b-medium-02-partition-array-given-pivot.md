@@ -1,6 +1,7 @@
 ---
 tags:
   - fundamental
+  - techniques/dutch-national-flag
 ---
 
 # [Partition Array According to Given Pivot](https://leetcode.com/problems/partition-array-according-to-given-pivot/)

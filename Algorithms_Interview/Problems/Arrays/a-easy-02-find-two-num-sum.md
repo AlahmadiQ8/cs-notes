@@ -1,3 +1,8 @@
+---
+tags:
+  - techniques/two-pointers
+---
+
 # [Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 
 Given a sorted array of integers, find two numbers in the array
