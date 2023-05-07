@@ -23,10 +23,10 @@ public class Solution
     public IList<IList<int>> Combine(int n, int k)
     {
         var result = new List<IList<int>>();
-        Permute(new int[k], 1, 0);
+        Combination(new int[k], 1, 0);
         return result;
 
-        void Permute(int[] buffer, int startIndex, int bufferIndex)
+        void Combination(int[] buffer, int startIndex, int bufferIndex)
         {
             if (bufferIndex == k)
             {
@@ -40,7 +40,7 @@ public class Solution
             for (var i = startIndex; i <= n; i++)
             {
                 buffer[bufferIndex] = i;
-                Permute(buffer, i + 1, bufferIndex + 1);
+                Combination(buffer, i + 1, bufferIndex + 1);
             }
         }
     }
