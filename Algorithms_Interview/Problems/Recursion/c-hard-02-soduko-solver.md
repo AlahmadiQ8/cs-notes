@@ -1,4 +1,9 @@
-## Problem
+---
+tags:
+  - techniques/backtracking
+---
+
+# [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/description/)
 
 ```
 Write a program to solve a Sudoku puzzle by filling the empty cells.
@@ -24,44 +29,49 @@ Empty cells are indicated by the character '.'.
 
 
 ```csharp
-public void SolveSudoku(char[][] board)
+public class Solution
 {
-    var checker = new Checker(board);
-    Helper(0, 0);
-
-    bool Helper(int i, int j)
+    public void SolveSudoku(char[][] board)
     {
-        if (i == 9) return true;
+        var solver = new SodukoSolver(board);
+        Backtrack(0, 0);
 
-        var next = Pair.Next(i, j);
-
-        if (board[i][j] != '.') return Helper(next.I, next.J);
-
-        for (var candidate = 1; candidate <= 9; candidate++)
+        bool Backtrack(int i, int j)
         {
-            var candidateChar = (char) (candidate + '0');
-            if (checker.CanPlace(i, j, candidateChar))
+            if (i == 9) return true;
+
+            var nextI = j == 8 ? i + 1 : i;
+            var nextJ = j == 8 ? 0 : j + 1;
+
+            if (board[i][j] != '.')
+                return Backtrack(nextI, nextJ);
+
+            for (var candidate = 1; candidate <= 9; candidate++)
             {
-                checker.Place(i, j, candidateChar);
-                board[i][j] = candidateChar;
-                if (Helper(next.I, next.J)) return true;
+                var c = (char)(candidate + '0');
+                if (solver.CanPlace(i, j, c))
+                {
+                    solver.Place(i, j, c);
+                    board[i][j] = c;
+                    if (Backtrack(nextI, nextJ)) return true;
 
-                checker.Remove(i, j, candidateChar);
-                board[i][j] = '.';
+                    solver.Remove(i, j, c);
+                    board[i][j] = '.';
+                }
             }
-        }
 
-        return false;
+            return false;
+        }
     }
 }
 
-class Checker
+class SodukoSolver
 {
     private readonly HashSet<char>[] _rows = new HashSet<char>[9];
     private readonly HashSet<char>[] _cols = new HashSet<char>[9];
     private readonly HashSet<char>[] _boxes = new HashSet<char>[9];
 
-    public Checker(char[][] board)
+    public SodukoSolver(char[][] board)
     {
         for (var i = 0; i < 9; i++)
         {
@@ -76,10 +86,8 @@ class Checker
         for (var i = 0; i < 9; i++)
         {
             for (var j = 0; j < 9; j++)
-            {
                 if (board[i][j] != '.')
                     Place(i, j, board[i][j]);
-            }
         }
     }
 
@@ -105,48 +113,9 @@ class Checker
         _boxes[GetBoxNumber(i, j)].Remove(c);
     }
 
-    public int GetBoxNumber(int i, int j)
+    private int GetBoxNumber(int i, int j)
     {
         return (i / 3) * 3 + j / 3;
-    }
-}
-
-class Pair
-{
-    public int I { get; }
-    public int J { get; }
-
-    private Pair(int i, int j)
-    {
-        I = i;
-        J = j;
-    }
-
-    public static Pair Next(int i, int j)
-    {
-        return j == 8 ? new Pair(i + 1, 0) : new Pair(i, j + 1);
-    }
-}
-
-public override void Test()
-{
-    var board = new[]
-    {
-        new[] {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
-        new[] {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
-        new[] {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
-        new[] {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
-        new[] {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
-        new[] {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
-        new[] {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
-        new[] {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
-        new[] {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
-    };
-
-    SolveSudoku(board);
-    foreach (var row in board)
-    {
-        row.LogArray();
     }
 }
 ```

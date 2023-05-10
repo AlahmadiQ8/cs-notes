@@ -1,7 +1,7 @@
 ---
 tags:
   - review
-  - techniques/recursion
+  - techniques/backtracking
 ---
 
 ## [Pow(x, n)](https://leetcode.com/problems/powx-n)
