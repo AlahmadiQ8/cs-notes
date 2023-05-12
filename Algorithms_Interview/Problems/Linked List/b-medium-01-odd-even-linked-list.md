@@ -1,6 +1,9 @@
-# Problem 
+---
+tags:
+  - review
+---
 
-https://leetcode.com/problems/odd-even-linked-list/
+# [Odd Even Linked List ](https://leetcode.com/problems/odd-even-linked-list/description/)
 
 Given a singly linked list, group all odd nodes together followed by the even
 nodes. Please note here we are talking about the node number and not the value
@@ -29,24 +32,6 @@ Note:
 - The first node is considered odd, the second node even and so on ...
 
 # Solution
-
-```javascript
-function oddEvenList(head) {
-  if (!head || head.next == null) return head
-  let odd = head
-  let even = head.next
-  const evenHead = even
-  while (even && even.next) {
-    odd.next = even.next
-    odd = odd.next
-    even.next = odd.next
-    even = even.next
-  }
-
-  odd.next = evenHead
-  return head
-};
-```
 
 ```csharp
 public ListNode OddEvenList(ListNode head)
