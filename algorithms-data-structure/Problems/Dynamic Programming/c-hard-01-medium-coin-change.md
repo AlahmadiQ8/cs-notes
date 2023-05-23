@@ -1,8 +1,10 @@
+# [Coin Change](https://leetcode.com/problems/coin-change/description/)
+
 Coin Change Problem: Given a set of coin denominations, print out the
 different ways you can make a target amont. You can use as many coins
 of each denomination as you like.
 
-For example, if coins are [1, 2, 5] and the target is 5, output will be: 
+For example, if coins are [1, 2, 5] and the target is 5, output will be:
 
 ```
 [1,1,1,1,1]
@@ -16,55 +18,20 @@ For example, if coins are [1, 2, 5] and the target is 5, output will be:
 - Auxiliary Buffer
 - Use map to eliminate duplicates
 
-```javascript
-const map = new Map()
-function coins(arr, buff, buffIndex, sumSofar, target) {
-  if (sumSofar === target) {
-    const result = buff.slice(0, buffIndex)
-    const key = getKey(result)
-    if (map.has(key)) return 
-    map.set(key, result)
-    return
-  }
-  if (buffIndex == target) return
-
-  for (let i = 0; i < arr.length; i++) {
-    buff[buffIndex] = arr[i]
-    coins(arr, buff, buffIndex + 1, sumSofar + arr[i], target)
-  }
-}
-
-function getKey(arr) {
-  const copy = [...arr]
-  copy.sort((a, b) => a - b)
-  return copy.join('')
-}
-
-coins([1, 2, 5], [], 0, 0, 5)
-for (const val of map.values()) {
-  console.log(val)
-}
-// ​​​​​[ 1, 1, 1, 1, 1 ]​​​​​
-// ​​​​​[ 2, 1, 1, 1 ]​​​​​
-// ​​​​​[ 2, 2, 1 ]​​​​​
-// ​​​​​[ 5 ]​​​​​
-```
-
-
-# Variation of the problem
+## Variation of the problem
 
 ```csharp
 // Number of different ways we can get target amount
 public int Change(int amount, int[] coins) {
     var dp = new int[amount + 1];
     dp[0] = 1;
-     
+
     foreach (var coin in coins) {
         for (var i = 0; i <= amount && i + coin <= amount; i++) {
-            dp[i + coin] += dp[i]; 
+            dp[i + coin] += dp[i];
         }
     }
-    
+
     return dp[amount];
 }
 
@@ -131,14 +98,15 @@ public int CoinChange(int[] coins, int amount)
     var dp = new int[amount + 1];
     Array.Fill(dp, amount + 1);
     dp[0] = 0;
-    
+
     for (var i = 0; i <= amount; i++) {
         foreach (var coin in coins) {
-            if (i - coin < 0) continue;
+            if (i - coin < 0)
+                continue;
             dp[i] = Math.Min(dp[i], dp[i - coin] + 1);
         }
     }
-    
+
     return dp[amount] <= amount ? dp[amount] : -1;
 }
 ```
