@@ -15,3 +15,17 @@
   - How are we monitoring the performance of our service? Do we get alerts
     whenever critical components fail or their performance degrades?
 6. Step 5: Redesign for key issues
+
+# Steps Based on Groking The System Design Interview
+
+1. Requirements Clarifications
+2. Back-of-the-envelope Estimation
+   * Write-heavy vs read-heavey
+   * Storage requirements
+   * Network bandwidth
+3. System interface definition
+4. Define data model
+5. Highlevel design
+6. Detailed design
+7. Identifiying and resolving bottlenecks
+8.
